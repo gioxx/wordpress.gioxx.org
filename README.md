@@ -1,26 +1,14 @@
-# YOURLS: my plugins and side projects
+# WordPress: my plugins and side projects
 
-Source code of [yourls.gioxx.org](https://yourls.gioxx.org) — a personal gallery of open-source plugins and side projects built for [YOURLS](https://yourls.org), the self-hosted PHP URL shortener.
+Source code of [wordpress.gioxx.org](https://wordpress.gioxx.org) — a personal gallery of open-source plugins built for [WordPress](https://wordpress.org).
 
 ## What this is
 
-A bilingual (EN/IT) web app that lists, describes and links all the YOURLS plugins I maintain, plus a few collateral tools. Each plugin page includes an overview, key features, installation instructions and a changelog link.
+A bilingual (EN/IT) web app that lists, describes and links all the WordPress plugins I maintain. Each plugin page includes an overview, key features, installation instructions and a changelog link.
 
 ## Plugins featured
 
-| Plugin | Description |
-|---|---|
-| **Plugin Manager** | Install, update and remove YOURLS plugins directly from the admin panel |
-| **Alternative Index** | Replace the default YOURLS public index with a custom landing page |
-| **Change Notifier** | Email notifications when a short URL is created, edited or deleted |
-| **Language Switcher** | Switch the YOURLS admin interface language from the dashboard |
-| **Logo Suite** | Replace the YOURLS logo with your own brand image |
-| **URL Fallback** | Redirect unknown short URLs to a configurable fallback destination |
-
-## Collateral projects
-
-- **[YOURLS-diff](https://github.com/gioxx/YOURLS-diff)** — Python CLI that generates a minimal ZIP with only the files changed between two YOURLS releases
-- **[YOURLS-DockerCustom](https://github.com/gioxx/YOURLS-DockerCustom)** — Custom Docker image extending `yourls:latest` with php-zip, 4 language packs, Plugin Manager and Language Switcher preloaded
+_None yet — this is a fresh scaffold, plugins will be added to `src/data/plugins.ts` as they're published._
 
 ## Stack
 

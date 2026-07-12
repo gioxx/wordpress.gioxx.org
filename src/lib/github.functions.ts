@@ -23,7 +23,12 @@ function formatStars(n: number): string {
   return String(n);
 }
 
-type ZipAsset = { browser_download_url: string; name: string; size?: number; content_type?: string };
+type ZipAsset = {
+  browser_download_url: string;
+  name: string;
+  size?: number;
+  content_type?: string;
+};
 
 function normalize(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "");
@@ -102,7 +107,8 @@ async function fetchOne(slug: string, github: string, token?: string): Promise<R
 
     if (repoRes.ok) {
       const data = (await repoRes.json()) as { stargazers_count?: number; default_branch?: string };
-      base.stars = typeof data.stargazers_count === "number" ? formatStars(data.stargazers_count) : null;
+      base.stars =
+        typeof data.stargazers_count === "number" ? formatStars(data.stargazers_count) : null;
       base.downloadUrl = `https://github.com/${parsed.owner}/${parsed.repo}/archive/refs/heads/${data.default_branch ?? "main"}.zip`;
     }
 
@@ -114,7 +120,12 @@ async function fetchOne(slug: string, github: string, token?: string): Promise<R
         published_at?: string;
         zipball_url?: string;
         body?: string | null;
-        assets?: Array<{ browser_download_url: string; name: string; size?: number; content_type?: string }>;
+        assets?: Array<{
+          browser_download_url: string;
+          name: string;
+          size?: number;
+          content_type?: string;
+        }>;
       };
       base.version = (data.tag_name ?? data.name ?? "").replace(/^v/, "") || null;
       base.releaseUrl = data.html_url ?? null;
@@ -159,12 +170,10 @@ export const getRepoStats = createServerFn({ method: "GET" })
     return getCachedStats(plugin.slug, plugin.github, process.env.GITHUB_TOKEN);
   });
 
-export const getAllRepoStats = createServerFn({ method: "GET" }).handler(async (): Promise<
-  Record<string, RepoStats>
-> => {
-  const token = process.env.GITHUB_TOKEN;
-  const results = await Promise.all(
-    plugins.map((p) => getCachedStats(p.slug, p.github, token)),
-  );
-  return Object.fromEntries(results.map((r) => [r.slug, r]));
-});
+export const getAllRepoStats = createServerFn({ method: "GET" }).handler(
+  async (): Promise<Record<string, RepoStats>> => {
+    const token = process.env.GITHUB_TOKEN;
+    const results = await Promise.all(plugins.map((p) => getCachedStats(p.slug, p.github, token)));
+    return Object.fromEntries(results.map((r) => [r.slug, r]));
+  },
+);

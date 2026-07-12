@@ -57,7 +57,13 @@ type Dict = {
 
 const dicts: Record<Lang, Dict> = {
   en: {
-    nav: { plugins: "Plugins", about: "About", collateral: "Tools", github: "GitHub", blog: "Blog" },
+    nav: {
+      plugins: "Plugins",
+      about: "About",
+      collateral: "Tools",
+      github: "GitHub",
+      blog: "Blog",
+    },
     badge: { stableSuffix: "stable" },
     home: {
       eyebrow: "Plugin Suite for WordPress",
@@ -105,7 +111,8 @@ const dicts: Record<Lang, Dict> = {
       p3: "If one of these plugins is useful to you, leave a star on the repository or open an issue with feedback. Pull requests are always welcome.",
       github: "GitHub",
       contact: "Contact form",
-      contactNote: "For support or questions about a specific plugin, open an issue directly on its GitHub repository. As a last resort, you can reach me via my contact form.",
+      contactNote:
+        "For support or questions about a specific plugin, open an issue directly on its GitHub repository. As a last resort, you can reach me via my contact form.",
     },
     footer: {
       tagline: "❤️ Lovingly developed by the usually-on-vacation brain cell of Gioxx.",
@@ -117,7 +124,13 @@ const dicts: Record<Lang, Dict> = {
     language: { label: "Language" },
   },
   it: {
-    nav: { plugins: "Plugin", about: "About", collateral: "Strumenti", github: "GitHub", blog: "Blog" },
+    nav: {
+      plugins: "Plugin",
+      about: "About",
+      collateral: "Strumenti",
+      github: "GitHub",
+      blog: "Blog",
+    },
     badge: { stableSuffix: "stabile" },
     home: {
       eyebrow: "Suite di plugin per WordPress",
@@ -157,7 +170,8 @@ const dicts: Record<Lang, Dict> = {
     about: {
       eyebrow: "About",
       title: "Plugin pensati come strumenti, non come prodotti.",
-      p1Pre: "gioxx/WordPress è la mia galleria personale di plugin e progetti collaterali sviluppati per ",
+      p1Pre:
+        "gioxx/WordPress è la mia galleria personale di plugin e progetti collaterali sviluppati per ",
       p1Mid: "WordPress",
       p1Post:
         ", il celebre CMS open-source. Ogni plugin nasce da un problema reale, risolto nel modo più semplice e robusto possibile.",
@@ -165,10 +179,12 @@ const dicts: Record<Lang, Dict> = {
       p3: "Se uno di questi plugin ti è utile, lascia una stella sul repository o apri una issue con feedback. Le pull request sono sempre benvenute.",
       github: "GitHub",
       contact: "Modulo di contatto",
-      contactNote: "Per supporto o domande su uno specifico plugin, apri una Issue direttamente nel suo repository GitHub. In ultima istanza, puoi contattarmi tramite il mio modulo di contatto.",
+      contactNote:
+        "Per supporto o domande su uno specifico plugin, apri una Issue direttamente nel suo repository GitHub. In ultima istanza, puoi contattarmi tramite il mio modulo di contatto.",
     },
     footer: {
-      tagline: "❤️ Sviluppato con amore dall’unico neurone funzionante di Gioxx (quando non è in vacanza).",
+      tagline:
+        "❤️ Sviluppato con amore dall’unico neurone funzionante di Gioxx (quando non è in vacanza).",
       support: "Sostieni",
       disclaimer:
         "Tutti i marchi citati appartengono ai legittimi proprietari; marchi di terzi, nomi di prodotti, nomi commerciali, nomi corporativi e società citati possono essere marchi di proprietà dei rispettivi titolari o marchi registrati d'altre società e sono stati utilizzati a puro scopo esplicativo ed a beneficio del possessore, senza alcun fine di violazione dei diritti di Copyright vigenti.",

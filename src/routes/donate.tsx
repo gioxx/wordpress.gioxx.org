@@ -74,9 +74,7 @@ function Donate() {
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-balance leading-[1.05]">
-            {lang === "it"
-              ? "Ogni caffè conta."
-              : "Every coffee counts."}
+            {lang === "it" ? "Ogni caffè conta." : "Every coffee counts."}
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed mb-16 max-w-xl">
             {lang === "it"
@@ -116,7 +114,9 @@ function Donate() {
                   </div>
                   <div
                     className={`inline-flex items-center gap-2 text-sm font-medium shrink-0 ${
-                      m.accent ? "text-accent" : "text-muted-foreground group-hover:text-accent transition-colors"
+                      m.accent
+                        ? "text-accent"
+                        : "text-muted-foreground group-hover:text-accent transition-colors"
                     }`}
                   >
                     {lang === "it" ? m.ctaIt : m.cta}

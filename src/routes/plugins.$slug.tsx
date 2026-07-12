@@ -26,9 +26,9 @@ export const Route = createFileRoute("/plugins/$slug")({
     const tagline = plugin.tagline.en;
     return {
       meta: [
-        { title: `${plugin.name} — YOURLS Plugin` },
+        { title: `${plugin.name} — WordPress Plugin` },
         { name: "description", content: tagline },
-        { property: "og:title", content: `${plugin.name} — YOURLS Plugin` },
+        { property: "og:title", content: `${plugin.name} — WordPress Plugin` },
         { property: "og:description", content: tagline },
       ],
     };
@@ -152,15 +152,6 @@ function PluginDetail() {
                   {t.detail.releasedOn} {publishedAt}
                 </span>
               )}
-              <a
-                href="https://github.com/YOURLS/awesome"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded uppercase text-accent border border-accent/20 hover:border-accent/40 transition-colors"
-              >
-                <Sparkles className="size-2.5" />
-                {t.detail.awesomeYourls}
-              </a>
             </div>
           </div>
 
@@ -180,7 +171,9 @@ function PluginDetail() {
                 {t.detail.overview}
               </span>
             </div>
-            <p className="text-muted-foreground mb-10 leading-relaxed">{plugin.description[lang]}</p>
+            <p className="text-muted-foreground mb-10 leading-relaxed">
+              {plugin.description[lang]}
+            </p>
 
             <h2 className="font-bold text-lg mb-4">{t.detail.features}</h2>
             <ul className="space-y-4 mb-10">
@@ -236,9 +229,9 @@ function PluginDetail() {
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div className="p-4 bg-card ring-1 ring-border rounded-lg">
                 <span className="block font-mono text-[10px] text-muted-foreground uppercase mb-1">
-                  {t.detail.yourlsMin}
+                  {t.detail.wpMin}
                 </span>
-                <span className="font-bold text-sm">{plugin.yourlsMin}</span>
+                <span className="font-bold text-sm">{plugin.wpMin}</span>
               </div>
               <div className="p-4 bg-card ring-1 ring-border rounded-lg">
                 <span className="block font-mono text-[10px] text-muted-foreground uppercase mb-1">
@@ -250,7 +243,11 @@ function PluginDetail() {
           </div>
         </div>
 
-        <section id="manual-install" className="mb-20 animate-fade-in scroll-mt-24" style={{ animationDelay: "250ms" }}>
+        <section
+          id="manual-install"
+          className="mb-20 animate-fade-in scroll-mt-24"
+          style={{ animationDelay: "250ms" }}
+        >
           <div className="border border-amber-500/20 bg-amber-500/5 rounded-xl p-6 md:p-8">
             <div className="flex items-start justify-between gap-4 mb-2">
               <a
@@ -266,7 +263,9 @@ function PluginDetail() {
             </p>
             <div className="bg-[var(--code-bg)] rounded-lg overflow-hidden mb-4">
               <div className="flex items-center justify-between px-4 py-2 border-b border-white/5">
-                <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest">SSH</span>
+                <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest">
+                  SSH
+                </span>
                 <button
                   type="button"
                   onClick={copyCommands}
@@ -301,19 +300,58 @@ function PluginDetail() {
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
-                  h1: ({ children }) => <h1 className="text-xl font-bold mb-3 mt-5 first:mt-0">{children}</h1>,
-                  h2: ({ children }) => <h2 className="text-lg font-bold mb-2 mt-4 first:mt-0">{children}</h2>,
-                  h3: ({ children }) => <h3 className="text-base font-semibold mb-2 mt-3 first:mt-0">{children}</h3>,
-                  p: ({ children }) => <p className="text-sm text-foreground/90 leading-relaxed mb-3 last:mb-0">{children}</p>,
-                  ul: ({ children }) => <ul className="list-disc pl-5 mb-3 space-y-1">{children}</ul>,
-                  ol: ({ children }) => <ol className="list-decimal pl-5 mb-3 space-y-1">{children}</ol>,
-                  li: ({ children }) => <li className="text-sm text-foreground/90 leading-relaxed">{children}</li>,
-                  pre: ({ children }) => <pre className="bg-[var(--code-bg)] text-white/80 rounded-lg p-4 overflow-x-auto mb-3 font-mono text-xs">{children}</pre>,
-                  code: ({ children }) => <code className="bg-muted rounded px-1.5 py-0.5 text-xs font-mono text-accent">{children}</code>,
+                  h1: ({ children }) => (
+                    <h1 className="text-xl font-bold mb-3 mt-5 first:mt-0">{children}</h1>
+                  ),
+                  h2: ({ children }) => (
+                    <h2 className="text-lg font-bold mb-2 mt-4 first:mt-0">{children}</h2>
+                  ),
+                  h3: ({ children }) => (
+                    <h3 className="text-base font-semibold mb-2 mt-3 first:mt-0">{children}</h3>
+                  ),
+                  p: ({ children }) => (
+                    <p className="text-sm text-foreground/90 leading-relaxed mb-3 last:mb-0">
+                      {children}
+                    </p>
+                  ),
+                  ul: ({ children }) => (
+                    <ul className="list-disc pl-5 mb-3 space-y-1">{children}</ul>
+                  ),
+                  ol: ({ children }) => (
+                    <ol className="list-decimal pl-5 mb-3 space-y-1">{children}</ol>
+                  ),
+                  li: ({ children }) => (
+                    <li className="text-sm text-foreground/90 leading-relaxed">{children}</li>
+                  ),
+                  pre: ({ children }) => (
+                    <pre className="bg-[var(--code-bg)] text-white/80 rounded-lg p-4 overflow-x-auto mb-3 font-mono text-xs">
+                      {children}
+                    </pre>
+                  ),
+                  code: ({ children }) => (
+                    <code className="bg-muted rounded px-1.5 py-0.5 text-xs font-mono text-accent">
+                      {children}
+                    </code>
+                  ),
                   hr: () => <hr className="border-border my-4" />,
-                  strong: ({ children }) => <strong className="font-semibold text-foreground">{children}</strong>,
-                  a: ({ href, children }) => <a href={href} target="_blank" rel="noreferrer" className="text-accent hover:underline">{children}</a>,
-                  blockquote: ({ children }) => <blockquote className="border-l-2 border-accent/40 pl-4 italic text-muted-foreground mb-3">{children}</blockquote>,
+                  strong: ({ children }) => (
+                    <strong className="font-semibold text-foreground">{children}</strong>
+                  ),
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-accent hover:underline"
+                    >
+                      {children}
+                    </a>
+                  ),
+                  blockquote: ({ children }) => (
+                    <blockquote className="border-l-2 border-accent/40 pl-4 italic text-muted-foreground mb-3">
+                      {children}
+                    </blockquote>
+                  ),
                 }}
               >
                 {releaseBody}

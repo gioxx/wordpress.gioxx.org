@@ -35,9 +35,7 @@ export function PluginCard({
       </div>
       <div className="flex justify-between items-start mb-2 gap-3">
         <h3 className="font-bold text-lg leading-tight">{plugin.name}</h3>
-        <span className="font-mono text-[11px] text-muted-foreground shrink-0 mt-1">
-          ★ {stars}
-        </span>
+        <span className="font-mono text-[11px] text-muted-foreground shrink-0 mt-1">★ {stars}</span>
       </div>
       <p className="text-sm text-muted-foreground mb-3 leading-relaxed flex-1">
         {plugin.tagline[lang]}

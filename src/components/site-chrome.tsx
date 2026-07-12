@@ -9,16 +9,16 @@ export function SiteNav() {
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <Link to="/" className="flex items-center gap-2 font-bold tracking-tighter text-lg uppercase">
+          <Link
+            to="/"
+            className="flex items-center gap-2 font-bold tracking-tighter text-lg uppercase"
+          >
             <img src="/favicon.svg" alt="" className="size-5 shrink-0" />
             gioxx/WordPress
           </Link>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
             <Link to="/" hash="plugins" className="hover:text-foreground transition-colors">
               {t.nav.plugins}
-            </Link>
-            <Link to="/" hash="collateral" className="hover:text-foreground transition-colors">
-              {t.nav.collateral}
             </Link>
             <Link to="/about" className="hover:text-foreground transition-colors">
               {t.nav.about}
@@ -69,7 +69,9 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-card mt-20">
       <div className="max-w-6xl mx-auto px-6 py-10">
-        <p className="text-sm font-bold tracking-tighter uppercase mb-1">© {new Date().getFullYear()} GIOXX/WORDPRESS</p>
+        <p className="text-sm font-bold tracking-tighter uppercase mb-1">
+          © {new Date().getFullYear()} GIOXX/WORDPRESS
+        </p>
         <p className="text-xs text-muted-foreground mb-6">{t.footer.tagline}</p>
         <p className="text-[10px] leading-relaxed text-muted-foreground/70">
           {t.footer.disclaimer}

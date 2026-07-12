@@ -7,7 +7,7 @@
   "routes": [
     {
       "pattern": "wordpress.gioxx.org",
-      "custom_domain": true
-    }
-  ]
+      "custom_domain": true,
+    },
+  ],
 }
