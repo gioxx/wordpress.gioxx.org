@@ -292,34 +292,36 @@ export const plugins: Plugin[] = [
 
   // Coming soon — repository privati, non ancora pubblicati
   {
-    slug: "wp-ai-tags-optimizer",
-    name: "AI Tags Optimizer",
+    slug: "wp-smart-tags",
+    name: "Smart Tags for WordPress",
     tagline: {
-      en: "Uses the Claude API to suggest tag merges and flag unused tags — always with manual approval.",
-      it: "Usa le API di Claude per suggerire l'unione dei tag e segnalare quelli inutilizzati — sempre con approvazione manuale.",
+      en: "Manage WordPress tags manually or with Claude API suggestions — always with manual approval.",
+      it: "Gestisci i tag di WordPress manualmente o con i suggerimenti delle API di Claude — sempre con approvazione manuale.",
     },
     description: {
-      en: "AI Tags Optimizer analyzes your WordPress tags with the Claude API (Anthropic) to suggest merges for duplicates and synonyms and flag tags that are no longer used. Every suggestion requires manual approval before anything changes — nothing is merged or deleted automatically. Currently in private development.",
-      it: "AI Tags Optimizer analizza i tag di WordPress con le API di Claude (Anthropic) per suggerire l'unione di duplicati e sinonimi e segnalare i tag non più utilizzati. Ogni suggerimento richiede approvazione manuale prima di qualsiasi modifica — nulla viene unito o eliminato automaticamente. Attualmente in sviluppo privato.",
+      en: "Smart Tags for WordPress lets you search, merge and delete tags manually, or turn on Claude (Anthropic) suggestions to detect duplicate/synonymous tags and flag ones that are no longer used. Every suggestion still requires manual approval before anything changes — nothing is merged or deleted automatically. Currently in private development.",
+      it: "Smart Tags for WordPress permette di cercare, unire ed eliminare i tag manualmente, oppure di attivare i suggerimenti di Claude (Anthropic) per rilevare tag duplicati/sinonimi e segnalare quelli non più utilizzati. Ogni suggerimento richiede comunque approvazione manuale prima di qualsiasi modifica — nulla viene unito o eliminato automaticamente. Attualmente in sviluppo privato.",
     },
     icon: Tags,
     tags: ["AI", "Tags", "Claude"],
     stars: "—",
-    version: "0.13.0",
+    version: "0.15.2",
     status: "coming-soon",
     wpMin: "6.0+",
     phpCompat: "7.4+",
-    github: repo("wp-ai-tags-optimizer"),
+    github: repo("wp-smart-tags"),
     download: "",
     features: {
       en: [
-        "Detects duplicate and synonymous tags via the Claude API.",
+        "Search, merge and delete tags manually.",
+        "Optional Claude API suggestions for duplicate and synonymous tags.",
         "Flags tags that are no longer used on any post.",
         "Every merge or cleanup suggestion requires manual approval.",
         "No automatic changes to your taxonomy.",
       ],
       it: [
-        "Rileva tag duplicati e sinonimi tramite le API di Claude.",
+        "Cerca, unisci ed elimina i tag manualmente.",
+        "Suggerimenti opzionali via API Claude per tag duplicati e sinonimi.",
         "Segnala i tag non più utilizzati in nessun articolo.",
         "Ogni suggerimento di unione o pulizia richiede approvazione manuale.",
         "Nessuna modifica automatica alla tassonomia.",
