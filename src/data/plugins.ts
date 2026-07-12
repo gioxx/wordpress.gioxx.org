@@ -210,6 +210,44 @@ export const plugins: Plugin[] = [
     ],
   },
   {
+    slug: "wp-posts-to-github",
+    name: "WordPress Posts to GitHub",
+    tagline: {
+      en: "Exports published posts as Markdown files, with YAML front matter, to a GitHub repository.",
+      it: "Esporta gli articoli pubblicati come file Markdown, con front matter YAML, verso un repository GitHub.",
+    },
+    description: {
+      en: "WordPress Posts to GitHub exports published posts as Markdown files complete with YAML front matter and pushes them to a GitHub repository, keeping a version-controlled mirror of your content outside WordPress.",
+      it: "WordPress Posts to GitHub esporta gli articoli pubblicati come file Markdown completi di front matter YAML e li invia a un repository GitHub, mantenendo una copia versionata dei tuoi contenuti al di fuori di WordPress.",
+    },
+    icon: FileCode2,
+    tags: ["GitHub", "Markdown", "Export"],
+    stars: "—",
+    version: "1.5.4",
+    status: "stable",
+    wpMin: "6.0+",
+    phpCompat: "7.4+",
+    github: repo("wp-posts-to-github"),
+    download: dl("wp-posts-to-github"),
+    features: {
+      en: [
+        "Exports published posts as Markdown with YAML front matter.",
+        "Pushes exported files directly to a GitHub repository.",
+        "Keeps a version-controlled mirror of your content.",
+      ],
+      it: [
+        "Esporta gli articoli pubblicati in Markdown con front matter YAML.",
+        "Invia i file esportati direttamente a un repository GitHub.",
+        "Mantiene una copia versionata dei tuoi contenuti.",
+      ],
+    },
+    install: [
+      "cd wp-content/plugins",
+      "git clone https://github.com/gioxx/wp-posts-to-github",
+      "# Activate 'WordPress Posts to GitHub' and configure your repository under Settings",
+    ],
+  },
+  {
     slug: "wp-simplealexa",
     name: "Simple Alexa News Briefing",
     tagline: {
@@ -285,40 +323,6 @@ export const plugins: Plugin[] = [
         "Segnala i tag non più utilizzati in nessun articolo.",
         "Ogni suggerimento di unione o pulizia richiede approvazione manuale.",
         "Nessuna modifica automatica alla tassonomia.",
-      ],
-    },
-    install: ["# Coming soon — not yet publicly available"],
-  },
-  {
-    slug: "wp-posts-to-github",
-    name: "WordPress Posts to GitHub",
-    tagline: {
-      en: "Exports published posts as Markdown files, with YAML front matter, to a GitHub repository.",
-      it: "Esporta gli articoli pubblicati come file Markdown, con front matter YAML, verso un repository GitHub.",
-    },
-    description: {
-      en: "WordPress Posts to GitHub exports published posts as Markdown files complete with YAML front matter and pushes them to a GitHub repository, keeping a version-controlled mirror of your content outside WordPress. Currently in private development.",
-      it: "WordPress Posts to GitHub esporta gli articoli pubblicati come file Markdown completi di front matter YAML e li invia a un repository GitHub, mantenendo una copia versionata dei tuoi contenuti al di fuori di WordPress. Attualmente in sviluppo privato.",
-    },
-    icon: FileCode2,
-    tags: ["GitHub", "Markdown", "Export"],
-    stars: "—",
-    version: "1.5.4",
-    status: "coming-soon",
-    wpMin: "6.0+",
-    phpCompat: "7.4+",
-    github: repo("wp-posts-to-github"),
-    download: "",
-    features: {
-      en: [
-        "Exports published posts as Markdown with YAML front matter.",
-        "Pushes exported files directly to a GitHub repository.",
-        "Keeps a version-controlled mirror of your content.",
-      ],
-      it: [
-        "Esporta gli articoli pubblicati in Markdown con front matter YAML.",
-        "Invia i file esportati direttamente a un repository GitHub.",
-        "Mantiene una copia versionata dei tuoi contenuti.",
       ],
     },
     install: ["# Coming soon — not yet publicly available"],
