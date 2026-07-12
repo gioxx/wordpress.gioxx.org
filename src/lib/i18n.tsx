@@ -16,7 +16,7 @@ type Dict = {
     collateralTitle: string;
     collateralSubtitle: string;
   };
-  card: { explore: string };
+  card: { explore: string; comingSoon: string };
   detail: {
     back: string;
     overview: string;
@@ -37,6 +37,9 @@ type Dict = {
     sshTitle: string;
     sshIntro: string;
     sshAlt: string;
+    wporg: string;
+    comingSoon: string;
+    comingSoonNote: string;
   };
   about: {
     eyebrow: string;
@@ -76,7 +79,7 @@ const dicts: Record<Lang, Dict> = {
       collateralTitle: "Side projects",
       collateralSubtitle: "Utilities and tooling around the WordPress ecosystem.",
     },
-    card: { explore: "Explore details" },
+    card: { explore: "Explore details", comingSoon: "Coming soon" },
     detail: {
       back: "All plugins",
       overview: "Overview",
@@ -99,6 +102,10 @@ const dicts: Record<Lang, Dict> = {
         "You can install this plugin manually over SSH — connect to your server and run these commands inside your wp-content/plugins directory:",
       sshAlt:
         "Alternatively, download the ZIP above and upload it from Plugins → Add New → Upload Plugin in your WordPress dashboard, or via FTP/SFTP.",
+      wporg: "WordPress.org listing",
+      comingSoon: "Coming soon",
+      comingSoonNote:
+        "This plugin is still in private development and isn't publicly available yet. Check back later for the GitHub repository and download.",
     },
     about: {
       eyebrow: "About",
@@ -143,7 +150,7 @@ const dicts: Record<Lang, Dict> = {
       collateralTitle: "Progetti collaterali",
       collateralSubtitle: "Utilità e strumenti attorno all'ecosistema WordPress.",
     },
-    card: { explore: "Esplora dettagli" },
+    card: { explore: "Esplora dettagli", comingSoon: "In arrivo" },
     detail: {
       back: "Tutti i plugin",
       overview: "Panoramica",
@@ -166,6 +173,10 @@ const dicts: Record<Lang, Dict> = {
         "Puoi installare questo plugin manualmente via SSH — connettiti al tuo server ed esegui questi comandi all'interno della directory wp-content/plugins:",
       sshAlt:
         "In alternativa, scarica lo ZIP qui sopra e caricalo da Plugin → Aggiungi nuovo → Carica plugin nella tua bacheca WordPress, oppure via FTP/SFTP.",
+      wporg: "Scheda su WordPress.org",
+      comingSoon: "In arrivo",
+      comingSoonNote:
+        "Questo plugin è ancora in sviluppo privato e non è ancora disponibile pubblicamente. Torna più avanti per trovare il repository GitHub e il download.",
     },
     about: {
       eyebrow: "About",

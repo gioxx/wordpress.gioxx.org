@@ -76,6 +76,7 @@ function PluginDetail() {
   };
   const plugin = getPlugin(slug)!;
   const Icon = plugin.icon;
+  const comingSoon = plugin.status === "coming-soon";
   const related = plugins.filter((p) => p.slug !== plugin.slug).slice(0, 3);
   const version = stats?.version ?? plugin.version;
   const stars = stats?.stars ?? plugin.stars;
@@ -137,17 +138,21 @@ function PluginDetail() {
               ))}
               <span
                 className={`text-[10px] font-mono px-2 py-0.5 rounded uppercase ${
-                  plugin.status === "stable"
-                    ? "bg-accent/10 text-accent"
-                    : "bg-amber-500/10 text-amber-600"
+                  comingSoon
+                    ? "bg-amber-500/10 text-amber-600"
+                    : plugin.status === "stable"
+                      ? "bg-accent/10 text-accent"
+                      : "bg-amber-500/10 text-amber-600"
                 }`}
               >
-                {plugin.status} · v{version}
+                {comingSoon ? t.detail.comingSoon : `${plugin.status} · v${version}`}
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded uppercase text-muted-foreground border border-border">
-                ★ {stars}
-              </span>
-              {publishedAt && (
+              {!comingSoon && (
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded uppercase text-muted-foreground border border-border">
+                  ★ {stars}
+                </span>
+              )}
+              {!comingSoon && publishedAt && (
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded uppercase text-muted-foreground">
                   {t.detail.releasedOn} {publishedAt}
                 </span>
@@ -186,46 +191,69 @@ function PluginDetail() {
             </ul>
 
             <div className="flex flex-wrap gap-3">
-              <a
-                href={plugin.github}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 bg-foreground text-background rounded-lg text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
-              >
-                <GithubIcon className="size-4" />
-                {t.detail.repo}
-              </a>
-              <a
-                href={downloadUrl}
-                className="inline-flex items-center gap-2 px-5 py-3 ring-1 ring-border rounded-lg text-sm font-medium hover:bg-card transition-all"
-              >
-                <Download className="size-4" />
-                {t.detail.download}
-              </a>
+              {!comingSoon && (
+                <a
+                  href={plugin.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-foreground text-background rounded-lg text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+                >
+                  <GithubIcon className="size-4" />
+                  {t.detail.repo}
+                </a>
+              )}
+              {!comingSoon && (
+                <a
+                  href={downloadUrl}
+                  className="inline-flex items-center gap-2 px-5 py-3 ring-1 ring-border rounded-lg text-sm font-medium hover:bg-card transition-all"
+                >
+                  <Download className="size-4" />
+                  {t.detail.download}
+                </a>
+              )}
+              {plugin.wporg && (
+                <a
+                  href={plugin.wporg}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 ring-1 ring-border rounded-lg text-sm font-medium hover:bg-card transition-all"
+                >
+                  <ExternalLink className="size-4" />
+                  {t.detail.wporg}
+                </a>
+              )}
             </div>
           </div>
 
           <div className="lg:w-[420px] animate-fade-in" style={{ animationDelay: "200ms" }}>
-            <div className="bg-[var(--code-bg)] rounded-xl overflow-hidden shadow-2xl ring-1 ring-foreground/10">
-              <div className="flex items-center gap-1.5 px-4 py-3 bg-white/5 border-b border-white/5">
-                <div className="size-2.5 rounded-full bg-red-500/30" />
-                <div className="size-2.5 rounded-full bg-amber-500/30" />
-                <div className="size-2.5 rounded-full bg-emerald-500/30" />
-                <span className="ml-4 font-mono text-[10px] text-white/40 uppercase tracking-widest">
-                  {t.detail.quickInstall}
-                </span>
+            {comingSoon ? (
+              <div className="border border-amber-500/20 bg-amber-500/5 rounded-xl p-6 md:p-8">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t.detail.comingSoonNote}
+                </p>
               </div>
-              <div className="p-6 font-mono text-sm leading-relaxed">
-                {plugin.install.map((line, i) => (
-                  <div key={i} className="flex gap-4 mb-1">
-                    <span className="text-white/30 select-none">{i + 1}</span>
-                    <span className={line.startsWith("#") ? "text-white/40" : "text-white/90"}>
-                      {line}
-                    </span>
-                  </div>
-                ))}
+            ) : (
+              <div className="bg-[var(--code-bg)] rounded-xl overflow-hidden shadow-2xl ring-1 ring-foreground/10">
+                <div className="flex items-center gap-1.5 px-4 py-3 bg-white/5 border-b border-white/5">
+                  <div className="size-2.5 rounded-full bg-red-500/30" />
+                  <div className="size-2.5 rounded-full bg-amber-500/30" />
+                  <div className="size-2.5 rounded-full bg-emerald-500/30" />
+                  <span className="ml-4 font-mono text-[10px] text-white/40 uppercase tracking-widest">
+                    {t.detail.quickInstall}
+                  </span>
+                </div>
+                <div className="p-6 font-mono text-sm leading-relaxed">
+                  {plugin.install.map((line, i) => (
+                    <div key={i} className="flex gap-4 mb-1">
+                      <span className="text-white/30 select-none">{i + 1}</span>
+                      <span className={line.startsWith("#") ? "text-white/40" : "text-white/90"}>
+                        {line}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div className="p-4 bg-card ring-1 ring-border rounded-lg">
                 <span className="block font-mono text-[10px] text-muted-foreground uppercase mb-1">
@@ -243,50 +271,52 @@ function PluginDetail() {
           </div>
         </div>
 
-        <section
-          id="manual-install"
-          className="mb-20 animate-fade-in scroll-mt-24"
-          style={{ animationDelay: "250ms" }}
-        >
-          <div className="border border-amber-500/20 bg-amber-500/5 rounded-xl p-6 md:p-8">
-            <div className="flex items-start justify-between gap-4 mb-2">
-              <a
-                href="#manual-install"
-                className="group inline-flex items-center gap-2 font-semibold text-sm text-amber-600 dark:text-amber-400 hover:underline"
-              >
-                {t.detail.sshTitle}
-                <LinkIcon className="size-3 opacity-0 group-hover:opacity-60 transition-opacity" />
-              </a>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-              {t.detail.sshIntro}
-            </p>
-            <div className="bg-[var(--code-bg)] rounded-lg overflow-hidden mb-4">
-              <div className="flex items-center justify-between px-4 py-2 border-b border-white/5">
-                <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest">
-                  SSH
-                </span>
-                <button
-                  type="button"
-                  onClick={copyCommands}
-                  className="inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-white/40 hover:text-white/80 transition-colors"
+        {!comingSoon && (
+          <section
+            id="manual-install"
+            className="mb-20 animate-fade-in scroll-mt-24"
+            style={{ animationDelay: "250ms" }}
+          >
+            <div className="border border-amber-500/20 bg-amber-500/5 rounded-xl p-6 md:p-8">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <a
+                  href="#manual-install"
+                  className="group inline-flex items-center gap-2 font-semibold text-sm text-amber-600 dark:text-amber-400 hover:underline"
                 >
-                  {copied ? <Check className="size-3" /> : <Copy className="size-3" />}
-                  {copied ? "Copied!" : "Copy"}
-                </button>
+                  {t.detail.sshTitle}
+                  <LinkIcon className="size-3 opacity-0 group-hover:opacity-60 transition-opacity" />
+                </a>
               </div>
-              <div className="p-4 font-mono text-xs text-white/80 space-y-1 overflow-x-auto">
-                {sshCommands.map((cmd, i) => (
-                  <div key={i} className="flex gap-3">
-                    <span className="text-white/30 select-none">{i + 1}</span>
-                    <span>{cmd}</span>
-                  </div>
-                ))}
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                {t.detail.sshIntro}
+              </p>
+              <div className="bg-[var(--code-bg)] rounded-lg overflow-hidden mb-4">
+                <div className="flex items-center justify-between px-4 py-2 border-b border-white/5">
+                  <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest">
+                    SSH
+                  </span>
+                  <button
+                    type="button"
+                    onClick={copyCommands}
+                    className="inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-white/40 hover:text-white/80 transition-colors"
+                  >
+                    {copied ? <Check className="size-3" /> : <Copy className="size-3" />}
+                    {copied ? "Copied!" : "Copy"}
+                  </button>
+                </div>
+                <div className="p-4 font-mono text-xs text-white/80 space-y-1 overflow-x-auto">
+                  {sshCommands.map((cmd, i) => (
+                    <div key={i} className="flex gap-3">
+                      <span className="text-white/30 select-none">{i + 1}</span>
+                      <span>{cmd}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
+              <p className="text-xs text-muted-foreground">{t.detail.sshAlt}</p>
             </div>
-            <p className="text-xs text-muted-foreground">{t.detail.sshAlt}</p>
-          </div>
-        </section>
+          </section>
+        )}
 
         {releaseBody && (
           <section className="mb-20 animate-fade-in" style={{ animationDelay: "300ms" }}>

@@ -14,6 +14,7 @@ export function PluginCard({
 }) {
   const { lang, t } = useI18n();
   const Icon = plugin.icon;
+  const comingSoon = plugin.status === "coming-soon";
   const stars = stats?.stars ?? plugin.stars;
   const version = stats?.version ?? plugin.version;
   return (
@@ -27,20 +28,30 @@ export function PluginCard({
         <div className="size-10 bg-accent/5 rounded-lg flex items-center justify-center ring-1 ring-accent/10 text-accent shrink-0">
           <Icon className="size-5" />
         </div>
-        {plugin.featured && (
-          <span className="font-mono text-[9px] uppercase tracking-widest text-accent border border-accent/30 bg-accent/5 px-2 py-0.5 rounded-full shrink-0">
-            {lang === "it" ? "In evidenza" : "Featured"}
+        {comingSoon ? (
+          <span className="font-mono text-[9px] uppercase tracking-widest text-amber-600 dark:text-amber-400 border border-amber-500/30 bg-amber-500/5 px-2 py-0.5 rounded-full shrink-0">
+            {t.card.comingSoon}
           </span>
+        ) : (
+          plugin.featured && (
+            <span className="font-mono text-[9px] uppercase tracking-widest text-accent border border-accent/30 bg-accent/5 px-2 py-0.5 rounded-full shrink-0">
+              {lang === "it" ? "In evidenza" : "Featured"}
+            </span>
+          )
         )}
       </div>
       <div className="flex justify-between items-start mb-2 gap-3">
         <h3 className="font-bold text-lg leading-tight">{plugin.name}</h3>
-        <span className="font-mono text-[11px] text-muted-foreground shrink-0 mt-1">★ {stars}</span>
+        {!comingSoon && (
+          <span className="font-mono text-[11px] text-muted-foreground shrink-0 mt-1">
+            ★ {stars}
+          </span>
+        )}
       </div>
       <p className="text-sm text-muted-foreground mb-3 leading-relaxed flex-1">
         {plugin.tagline[lang]}
       </p>
-      {version && (
+      {!comingSoon && version && (
         <div className="font-mono text-[10px] text-muted-foreground mb-4">v{version}</div>
       )}
       <div className="flex flex-wrap gap-2 mb-6">
