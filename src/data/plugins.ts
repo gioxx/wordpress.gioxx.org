@@ -40,15 +40,15 @@ const dl = (name: string) => `https://github.com/${GH_USER}/${name}/archive/refs
 export const plugins: Plugin[] = [
   // Ordine alfabetico
   {
-    slug: "clarity-consent-auto",
-    name: "Clarity Consent Auto",
+    slug: "silent-consent-clarity",
+    name: "Silent Consent Clarity",
     tagline: {
       en: "Automatically grants Microsoft Clarity consent on internal and corporate sites.",
       it: "Concede automaticamente il consenso per Microsoft Clarity sui siti interni e aziendali.",
     },
     description: {
-      en: "Clarity Consent Auto is a lightweight consent layer that sits on top of the official Microsoft Clarity plugin. It automatically applies Ad Storage and Analytics Storage consent without touching Clarity's own configuration — meant for protected, corporate sites where cookie acceptance isn't strictly required under GDPR. It is not a replacement for Microsoft Clarity: both plugins need to be installed and active.",
-      it: "Clarity Consent Auto è un layer di consenso leggero che si appoggia al plugin ufficiale Microsoft Clarity. Applica automaticamente il consenso su Ad Storage e Analytics Storage senza toccare la configurazione di Clarity — pensato per siti protetti e aziendali dove l'accettazione dei cookie non è strettamente richiesta dal GDPR. Non sostituisce Microsoft Clarity: entrambi i plugin devono essere installati e attivi.",
+      en: "Silent Consent Clarity is a lightweight consent layer that sits on top of the official Microsoft Clarity plugin. It automatically applies Ad Storage and Analytics Storage consent without touching Clarity's own configuration — meant for protected, corporate sites where cookie acceptance isn't strictly required under GDPR. It is not a replacement for Microsoft Clarity: both plugins need to be installed and active.",
+      it: "Silent Consent Clarity è un layer di consenso leggero che si appoggia al plugin ufficiale Microsoft Clarity. Applica automaticamente il consenso su Ad Storage e Analytics Storage senza toccare la configurazione di Clarity — pensato per siti protetti e aziendali dove l'accettazione dei cookie non è strettamente richiesta dal GDPR. Non sostituisce Microsoft Clarity: entrambi i plugin devono essere installati e attivi.",
     },
     icon: ShieldCheck,
     tags: ["Clarity", "GDPR", "Privacy"],
@@ -57,8 +57,8 @@ export const plugins: Plugin[] = [
     status: "beta",
     wpMin: "6.0+",
     phpCompat: "7.4+",
-    github: repo("clarity-consent-auto"),
-    download: dl("clarity-consent-auto"),
+    github: repo("silent-consent-clarity"),
+    download: dl("silent-consent-clarity"),
     features: {
       en: [
         "Automatic consent management for Microsoft Clarity.",
@@ -80,8 +80,8 @@ export const plugins: Plugin[] = [
     install: [
       "# Requires the official Microsoft Clarity plugin, installed and configured",
       "cd wp-content/plugins",
-      "git clone https://github.com/gioxx/clarity-consent-auto",
-      "# Activate 'Clarity Consent Auto' and set your consent preferences under Settings > Clarity Consent",
+      "git clone https://github.com/gioxx/silent-consent-clarity",
+      "# Activate 'Silent Consent Clarity' and set your consent preferences under Settings > Clarity Consent",
     ],
   },
   {

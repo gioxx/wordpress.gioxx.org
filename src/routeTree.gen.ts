@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PluginsClarityConsentAutoRouteImport } from './routes/plugins.clarity-consent-auto'
 import { Route as PluginsSlugRouteImport } from './routes/plugins.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -35,6 +36,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PluginsClarityConsentAutoRoute =
+  PluginsClarityConsentAutoRouteImport.update({
+    id: '/plugins/clarity-consent-auto',
+    path: '/plugins/clarity-consent-auto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PluginsSlugRoute = PluginsSlugRouteImport.update({
   id: '/plugins/$slug',
   path: '/plugins/$slug',
@@ -47,6 +54,7 @@ export interface FileRoutesByFullPath {
   '/donate': typeof DonateRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/plugins/$slug': typeof PluginsSlugRoute
+  '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +62,7 @@ export interface FileRoutesByTo {
   '/donate': typeof DonateRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/plugins/$slug': typeof PluginsSlugRoute
+  '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,14 +71,33 @@ export interface FileRoutesById {
   '/donate': typeof DonateRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/plugins/$slug': typeof PluginsSlugRoute
+  '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/donate' | '/sitemap.xml' | '/plugins/$slug'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/sitemap.xml'
+    | '/plugins/$slug'
+    | '/plugins/clarity-consent-auto'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/donate' | '/sitemap.xml' | '/plugins/$slug'
+  to:
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/sitemap.xml'
+    | '/plugins/$slug'
+    | '/plugins/clarity-consent-auto'
   id:
-    '__root__' | '/' | '/about' | '/donate' | '/sitemap.xml' | '/plugins/$slug'
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/sitemap.xml'
+    | '/plugins/$slug'
+    | '/plugins/clarity-consent-auto'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -78,6 +106,7 @@ export interface RootRouteChildren {
   DonateRoute: typeof DonateRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PluginsSlugRoute: typeof PluginsSlugRoute
+  PluginsClarityConsentAutoRoute: typeof PluginsClarityConsentAutoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -110,6 +139,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/plugins/clarity-consent-auto': {
+      id: '/plugins/clarity-consent-auto'
+      path: '/plugins/clarity-consent-auto'
+      fullPath: '/plugins/clarity-consent-auto'
+      preLoaderRoute: typeof PluginsClarityConsentAutoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/plugins/$slug': {
       id: '/plugins/$slug'
       path: '/plugins/$slug'
@@ -126,6 +162,7 @@ const rootRouteChildren: RootRouteChildren = {
   DonateRoute: DonateRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   PluginsSlugRoute: PluginsSlugRoute,
+  PluginsClarityConsentAutoRoute: PluginsClarityConsentAutoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
