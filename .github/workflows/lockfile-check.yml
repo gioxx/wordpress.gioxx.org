@@ -6,6 +6,9 @@ on:
       - "package.json"
       - "bun.lock"
 
+permissions:
+  contents: read
+
 jobs:
   frozen-lockfile:
     runs-on: ubuntu-latest
