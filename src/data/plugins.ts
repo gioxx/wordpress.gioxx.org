@@ -124,8 +124,8 @@ export const plugins: Plugin[] = [
     featured: true,
   },
   {
-    slug: "wp-lsi",
-    name: "Lightweight Social Icons (mod)",
+    slug: "wp-lsi-reloaded",
+    name: "Lightweight Social Icons Reloaded",
     tagline: {
       en: "A maintained fork of Lightweight Social Icons with Mastodon, Telegram and refreshed icons.",
       it: "Un fork mantenuto di Lightweight Social Icons con Mastodon, Telegram e icone aggiornate.",
@@ -141,8 +141,8 @@ export const plugins: Plugin[] = [
     status: "stable",
     wpMin: "4.5+",
     phpCompat: "—",
-    github: repo("wp-lsi"),
-    download: dl("wp-lsi"),
+    github: repo("wp-lsi-reloaded"),
+    download: dl("wp-lsi-reloaded"),
     features: {
       en: [
         "Updated Fontello icon font: adds Mastodon and Telegram.",
