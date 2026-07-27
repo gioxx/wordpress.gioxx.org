@@ -30,7 +30,7 @@ jobs:
           npx wrangler dev --config dist/server/wrangler.json --port 8787 --ip 127.0.0.1 &
           WRANGLER_PID=$!
           for i in $(seq 1 20); do
-            CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/ 2>/dev/null); CODE=${CODE:-000}
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/ 2>/dev/null || true)
             if [ "$CODE" = "200" ]; then
               echo "Worker responded 200"
               kill $WRANGLER_PID
