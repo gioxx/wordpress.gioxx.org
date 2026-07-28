@@ -4,6 +4,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* theme: custom "WP Blue" · vibe: "dark-primary, brand-blue, Linear-clean, no bloom decoration"
+ * accent tuned to WordPress's own logo blue (#3858E9-ish, oklch hue ~264)
+ * display: Inter · mono: JetBrains Mono
+ */
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -31,6 +36,7 @@
   --color-surface: var(--surface);
   --color-code-bg: var(--code-bg);
   --font-sans: var(--font-display);
+  --font-display: var(--font-display);
   --font-mono: var(--font-mono);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -50,13 +56,13 @@
   --secondary-foreground: oklch(0.22 0.03 260);
   --muted: oklch(0.96 0.005 240);
   --muted-foreground: oklch(0.55 0.02 255);
-  --accent: oklch(0.58 0.15 195);
+  --accent: oklch(0.53 0.21 264);
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.22 0.03 260 / 0.08);
   --input: oklch(0.22 0.03 260 / 0.12);
-  --ring: oklch(0.58 0.15 195);
+  --ring: oklch(0.55 0.21 264);
   --code-bg: oklch(0.22 0.04 260);
   --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -76,11 +82,11 @@
   --secondary-foreground: oklch(0.97 0.005 240);
   --muted: oklch(0.27 0.03 260);
   --muted-foreground: oklch(0.7 0.02 255);
-  --accent: oklch(0.68 0.14 195);
-  --accent-foreground: oklch(0.16 0.02 260);
+  --accent: oklch(0.65 0.19 264);
+  --accent-foreground: oklch(1 0 0);
   --border: oklch(1 0 0 / 0.08);
   --input: oklch(1 0 0 / 0.12);
-  --ring: oklch(0.68 0.14 195);
+  --ring: oklch(0.68 0.2 264);
   --code-bg: oklch(0.14 0.02 260);
 }
 
@@ -100,12 +106,52 @@
   animation-play-state: paused;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation-duration: 0.001ms !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (scripting: none) {
   .animate-fade-in {
     animation: none;
     opacity: 1;
     transform: none;
   }
+}
+
+/* Typographic code/terminal frame — no re-drawn window chrome, no traffic-light dots */
+.code-frame {
+  background: var(--code-bg);
+  border-radius: var(--radius);
+  border: 1px solid oklch(1 0 0 / 0.08);
+}
+.code-frame__label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: oklch(1 0 0 / 0.4);
+  border-bottom: 1px solid oklch(1 0 0 / 0.08);
+}
+
+/* Card lift on hover — calm, no rotation, no scale-bounce, no outer glow */
+.card-lift {
+  transition:
+    transform 220ms var(--ease-out-expo),
+    border-color 220ms var(--ease-out-expo);
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+}
+
+.icon-badge {
+  transition: transform 220ms var(--ease-out-expo);
+}
+.card-lift:hover .icon-badge {
+  transform: scale(1.06);
 }
 
 @layer base {
@@ -116,11 +162,13 @@
   html {
     font-family: var(--font-display);
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    overflow-x: clip;
     font-feature-settings: "cv02", "cv03", "cv11", "ss01";
   }
 }

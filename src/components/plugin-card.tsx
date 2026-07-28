@@ -21,27 +21,27 @@ export function PluginCard({
     <Link
       to="/plugins/$slug"
       params={{ slug: plugin.slug }}
-      className={`group relative bg-card ring-1 rounded-xl p-6 hover:-translate-y-0.5 transition-all duration-300 animate-fade-in flex flex-col ${plugin.featured ? "ring-accent/30 hover:ring-accent/60 shadow-[0_0_0_1px_hsl(var(--accent)/0.15)]" : "ring-border hover:ring-accent/40"}`}
+      className={`card-lift group relative bg-card ring-1 rounded-[var(--radius)] p-6 animate-fade-in flex flex-col ${plugin.featured ? "ring-accent/30 hover:ring-accent/60" : "ring-border hover:ring-accent/40"}`}
       style={{ animationDelay: `${100 + index * 50}ms` }}
     >
       <div className="flex items-start justify-between mb-6 gap-3">
-        <div className="size-10 bg-accent/5 rounded-lg flex items-center justify-center ring-1 ring-accent/10 text-accent shrink-0">
+        <div className="icon-badge size-10 rounded-full flex items-center justify-center shrink-0 bg-accent/10 text-accent">
           <Icon className="size-5" />
         </div>
         {comingSoon ? (
-          <span className="font-mono text-[9px] uppercase tracking-widest text-amber-600 dark:text-amber-400 border border-amber-500/30 bg-amber-500/5 px-2 py-0.5 rounded-full shrink-0">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-amber-600 dark:text-amber-400 border border-amber-500/30 bg-amber-500/5 px-2 py-0.5 rounded shrink-0">
             {t.card.comingSoon}
           </span>
         ) : (
           plugin.featured && (
-            <span className="font-mono text-[9px] uppercase tracking-widest text-accent border border-accent/30 bg-accent/5 px-2 py-0.5 rounded-full shrink-0">
+            <span className="font-mono text-[9px] uppercase tracking-widest text-accent border border-accent/30 bg-accent/5 px-2 py-0.5 rounded shrink-0">
               {lang === "it" ? "In evidenza" : "Featured"}
             </span>
           )
         )}
       </div>
       <div className="flex justify-between items-start mb-2 gap-3">
-        <h3 className="font-bold text-lg leading-tight">{plugin.name}</h3>
+        <h3 className="font-display font-semibold text-lg leading-tight">{plugin.name}</h3>
         {!comingSoon && (
           <span className="font-mono text-[11px] text-muted-foreground shrink-0 mt-1">
             ★ {stars}
@@ -64,7 +64,7 @@ export function PluginCard({
           </span>
         ))}
       </div>
-      <div className="w-full py-2.5 rounded-lg bg-foreground text-background text-sm font-medium text-center group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+      <div className="w-full py-2.5 rounded-[var(--radius)] border border-border text-sm font-medium text-center group-hover:border-accent group-hover:text-accent transition-colors">
         {t.card.explore}
       </div>
     </Link>

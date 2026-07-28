@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { ThemeProvider } from "@/lib/theme";
 import { I18nProvider } from "@/lib/i18n";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { siteConfig } from "@/config/site";
 
 const themeInitScript = `(function(){try{var t=localStorage.getItem('archivio-theme')||'system';var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);}catch(e){}})();`;
 
@@ -77,11 +78,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "gioxx/WordPress — Plugin Gallery" },
-      { name: "description", content: "Estensioni artigianali open-source per WordPress." },
-      { name: "author", content: "gioxx" },
-      { property: "og:title", content: "gioxx/WordPress — Plugin Gallery" },
-      { property: "og:description", content: "Estensioni artigianali open-source per WordPress." },
+      { title: `${siteConfig.name} — Plugin Gallery` },
+      {
+        name: "description",
+        content: `Estensioni artigianali open-source per ${siteConfig.product.name}.`,
+      },
+      { name: "author", content: siteConfig.githubUser },
+      { property: "og:title", content: `${siteConfig.name} — Plugin Gallery` },
+      {
+        property: "og:description",
+        content: `Estensioni artigianali open-source per ${siteConfig.product.name}.`,
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

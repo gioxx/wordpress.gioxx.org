@@ -9,6 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { Lang } from "@/lib/i18n";
+import { siteConfig } from "@/config/site";
 
 export type Localized<T> = Record<Lang, T>;
 
@@ -33,9 +34,9 @@ export type Plugin = {
   wporg?: string;
 };
 
-const GH_USER = "gioxx";
-const repo = (name: string) => `https://github.com/${GH_USER}/${name}`;
-const dl = (name: string) => `https://github.com/${GH_USER}/${name}/archive/refs/heads/main.zip`;
+const repo = (name: string) => `https://github.com/${siteConfig.githubUser}/${name}`;
+const dl = (name: string) =>
+  `https://github.com/${siteConfig.githubUser}/${name}/archive/refs/heads/main.zip`;
 
 export const plugins: Plugin[] = [
   // Ordine alfabetico

@@ -15,6 +15,8 @@ type Dict = {
     explore: string;
     collateralTitle: string;
     collateralSubtitle: string;
+    statPlugins: string;
+    statCategories: string;
   };
   card: { explore: string; comingSoon: string };
   detail: {
@@ -53,7 +55,7 @@ type Dict = {
     contact: string;
     contactNote: string;
   };
-  footer: { tagline: string; support: string; disclaimer: string };
+  footer: { tagline: string; support: string; disclaimer: string; about: string; community: string };
   theme: { label: string; light: string; dark: string; system: string };
   language: { label: string };
 };
@@ -78,6 +80,8 @@ const dicts: Record<Lang, Dict> = {
       explore: "Explore details",
       collateralTitle: "Side projects",
       collateralSubtitle: "Utilities and tooling around the WordPress ecosystem.",
+      statPlugins: "plugins",
+      statCategories: "categories",
     },
     card: { explore: "Explore details", comingSoon: "Coming soon" },
     detail: {
@@ -124,6 +128,8 @@ const dicts: Record<Lang, Dict> = {
     footer: {
       tagline: "❤️ Lovingly developed by the usually-on-vacation brain cell of Gioxx.",
       support: "Donate",
+      about: "About",
+      community: "Community",
       disclaimer:
         "All trademarks mentioned are the property of their respective owners. Third-party trademarks, product names, trade names, corporate names and companies mentioned may be trademarks of their respective owners or registered trademarks of other companies and have been used for explanatory purposes only and for the benefit of the owner, without any intent to infringe existing copyright.",
     },
@@ -149,6 +155,8 @@ const dicts: Record<Lang, Dict> = {
       explore: "Esplora dettagli",
       collateralTitle: "Progetti collaterali",
       collateralSubtitle: "Utilità e strumenti attorno all'ecosistema WordPress.",
+      statPlugins: "plugin",
+      statCategories: "categorie",
     },
     card: { explore: "Esplora dettagli", comingSoon: "In arrivo" },
     detail: {
@@ -197,6 +205,8 @@ const dicts: Record<Lang, Dict> = {
       tagline:
         "❤️ Sviluppato con amore dall’unico neurone funzionante di Gioxx (quando non è in vacanza).",
       support: "Sostieni",
+      about: "About",
+      community: "Community",
       disclaimer:
         "Tutti i marchi citati appartengono ai legittimi proprietari; marchi di terzi, nomi di prodotti, nomi commerciali, nomi corporativi e società citati possono essere marchi di proprietà dei rispettivi titolari o marchi registrati d'altre società e sono stati utilizzati a puro scopo esplicativo ed a beneficio del possessore, senza alcun fine di violazione dei diritti di Copyright vigenti.",
     },

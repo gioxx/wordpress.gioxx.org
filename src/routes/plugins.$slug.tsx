@@ -8,6 +8,7 @@ import { SiteNav, SiteFooter } from "@/components/site-chrome";
 import { getPlugin, plugins } from "@/data/plugins";
 import { getRepoStats } from "@/lib/github.functions";
 import { useI18n } from "@/lib/i18n";
+import { siteConfig } from "@/config/site";
 
 export const Route = createFileRoute("/plugins/$slug")({
   loader: async ({ params }) => {
@@ -26,9 +27,9 @@ export const Route = createFileRoute("/plugins/$slug")({
     const tagline = plugin.tagline.en;
     return {
       meta: [
-        { title: `${plugin.name} — WordPress Plugin` },
+        { title: `${plugin.name} — ${siteConfig.product.name} Plugin` },
         { name: "description", content: tagline },
-        { property: "og:title", content: `${plugin.name} — WordPress Plugin` },
+        { property: "og:title", content: `${plugin.name} — ${siteConfig.product.name} Plugin` },
         { property: "og:description", content: tagline },
       ],
     };
@@ -87,7 +88,7 @@ function PluginDetail() {
     `wget -O ${zipName} "${downloadUrl}"`,
     `unzip ${zipName}`,
     `rm -rf ${repoName}/`,
-    `mv gioxx-${repoName}-*/ ${repoName}/`,
+    `mv ${siteConfig.githubUser}-${repoName}-*/ ${repoName}/`,
     `rm ${zipName}`,
   ];
   const publishedAt = stats?.publishedAt
@@ -124,7 +125,7 @@ function PluginDetail() {
 
         <header className="mb-16 animate-fade-in">
           <div className="flex items-center gap-4 mb-6">
-            <div className="size-14 bg-accent/5 rounded-xl flex items-center justify-center ring-1 ring-accent/10 text-accent">
+            <div className="icon-badge size-14 bg-accent/10 rounded-full flex items-center justify-center text-accent">
               <Icon className="size-7" />
             </div>
             <div className="flex flex-wrap gap-2">
@@ -160,27 +161,24 @@ function PluginDetail() {
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-balance mb-4 leading-[1.05]">
+          <h1 className="font-display font-semibold tracking-tight text-3xl md:text-[2.25rem] text-balance mb-3 leading-[1.15]">
             {plugin.name}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl text-pretty leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-2xl text-pretty leading-relaxed">
             {plugin.tagline[lang]}
           </p>
         </header>
 
         <div className="flex flex-col lg:flex-row gap-16 mb-20">
           <div className="flex-1 animate-fade-in" style={{ animationDelay: "100ms" }}>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-8 h-px bg-accent" />
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">
-                {t.detail.overview}
-              </span>
-            </div>
-            <p className="text-muted-foreground mb-10 leading-relaxed">
+            <span className="font-mono text-[11px] uppercase tracking-widest text-accent">
+              {t.detail.overview}
+            </span>
+            <p className="text-muted-foreground mt-3 mb-10 leading-relaxed">
               {plugin.description[lang]}
             </p>
 
-            <h2 className="font-bold text-lg mb-4">{t.detail.features}</h2>
+            <h2 className="font-display font-semibold text-lg mb-4">{t.detail.features}</h2>
             <ul className="space-y-4 mb-10">
               {plugin.features[lang].map((f) => (
                 <li key={f} className="flex gap-3 text-sm">
@@ -196,7 +194,7 @@ function PluginDetail() {
                   href={plugin.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-foreground text-background rounded-lg text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-accent text-accent-foreground rounded-[var(--radius)] text-sm font-medium hover:bg-accent/90 hover:-translate-y-0.5 transition-all"
                 >
                   <GithubIcon className="size-4" />
                   {t.detail.repo}
@@ -205,7 +203,7 @@ function PluginDetail() {
               {!comingSoon && (
                 <a
                   href={downloadUrl}
-                  className="inline-flex items-center gap-2 px-5 py-3 ring-1 ring-border rounded-lg text-sm font-medium hover:bg-card transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-3 ring-1 ring-border rounded-[var(--radius)] text-sm font-medium hover:ring-accent/40 hover:text-accent hover:-translate-y-0.5 transition-all"
                 >
                   <Download className="size-4" />
                   {t.detail.download}
@@ -216,7 +214,7 @@ function PluginDetail() {
                   href={plugin.wporg}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 ring-1 ring-border rounded-lg text-sm font-medium hover:bg-card transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-3 ring-1 ring-border rounded-[var(--radius)] text-sm font-medium hover:ring-accent/40 hover:text-accent hover:-translate-y-0.5 transition-all"
                 >
                   <ExternalLink className="size-4" />
                   {t.detail.wporg}
@@ -227,22 +225,15 @@ function PluginDetail() {
 
           <div className="lg:w-[420px] animate-fade-in" style={{ animationDelay: "200ms" }}>
             {comingSoon ? (
-              <div className="border border-amber-500/20 bg-amber-500/5 rounded-xl p-6 md:p-8">
+              <div className="border border-amber-500/20 bg-amber-500/5 rounded-[var(--radius)] p-6 md:p-8">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {t.detail.comingSoonNote}
                 </p>
               </div>
             ) : (
-              <div className="bg-[var(--code-bg)] rounded-xl overflow-hidden shadow-2xl ring-1 ring-foreground/10">
-                <div className="flex items-center gap-1.5 px-4 py-3 bg-white/5 border-b border-white/5">
-                  <div className="size-2.5 rounded-full bg-red-500/30" />
-                  <div className="size-2.5 rounded-full bg-amber-500/30" />
-                  <div className="size-2.5 rounded-full bg-emerald-500/30" />
-                  <span className="ml-4 font-mono text-[10px] text-white/40 uppercase tracking-widest">
-                    {t.detail.quickInstall}
-                  </span>
-                </div>
-                <div className="p-6 font-mono text-sm leading-relaxed">
+              <div className="code-frame overflow-hidden">
+                <div className="code-frame__label px-4 py-2.5">{t.detail.quickInstall}</div>
+                <div className="p-6 font-mono text-sm leading-relaxed overflow-x-auto">
                   {plugin.install.map((line, i) => (
                     <div key={i} className="flex gap-4 mb-1">
                       <span className="text-white/30 select-none">{i + 1}</span>
@@ -255,17 +246,17 @@ function PluginDetail() {
               </div>
             )}
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="p-4 bg-card ring-1 ring-border rounded-lg">
+              <div className="p-4 bg-card ring-1 ring-border rounded-[var(--radius)]">
                 <span className="block font-mono text-[10px] text-muted-foreground uppercase mb-1">
                   {t.detail.wpMin}
                 </span>
-                <span className="font-bold text-sm">{plugin.wpMin}</span>
+                <span className="font-display font-semibold text-sm">{plugin.wpMin}</span>
               </div>
-              <div className="p-4 bg-card ring-1 ring-border rounded-lg">
+              <div className="p-4 bg-card ring-1 ring-border rounded-[var(--radius)]">
                 <span className="block font-mono text-[10px] text-muted-foreground uppercase mb-1">
                   {t.detail.phpCompat}
                 </span>
-                <span className="font-bold text-sm">{plugin.phpCompat}</span>
+                <span className="font-display font-semibold text-sm">{plugin.phpCompat}</span>
               </div>
             </div>
           </div>
@@ -277,7 +268,7 @@ function PluginDetail() {
             className="mb-20 animate-fade-in scroll-mt-24"
             style={{ animationDelay: "250ms" }}
           >
-            <div className="border border-amber-500/20 bg-amber-500/5 rounded-xl p-6 md:p-8">
+            <div className="border border-amber-500/20 bg-amber-500/5 rounded-[var(--radius)] p-6 md:p-8">
               <div className="flex items-start justify-between gap-4 mb-2">
                 <a
                   href="#manual-install"
@@ -290,15 +281,13 @@ function PluginDetail() {
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 {t.detail.sshIntro}
               </p>
-              <div className="bg-[var(--code-bg)] rounded-lg overflow-hidden mb-4">
-                <div className="flex items-center justify-between px-4 py-2 border-b border-white/5">
-                  <span className="font-mono text-[10px] text-white/30 uppercase tracking-widest">
-                    SSH
-                  </span>
+              <div className="code-frame overflow-hidden mb-4">
+                <div className="code-frame__label flex items-center justify-between px-4 py-2.5">
+                  <span>SSH</span>
                   <button
                     type="button"
                     onClick={copyCommands}
-                    className="inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-white/40 hover:text-white/80 transition-colors"
+                    className="inline-flex items-center gap-1.5 normal-case tracking-normal text-white/50 hover:text-accent transition-colors"
                   >
                     {copied ? <Check className="size-3" /> : <Copy className="size-3" />}
                     {copied ? "Copied!" : "Copy"}
@@ -320,13 +309,10 @@ function PluginDetail() {
 
         {releaseBody && (
           <section className="mb-20 animate-fade-in" style={{ animationDelay: "300ms" }}>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-8 h-px bg-accent" />
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">
-                {t.detail.changelog}
-              </span>
-            </div>
-            <div className="bg-card ring-1 ring-border rounded-xl p-6 md:p-8">
+            <span className="block font-mono text-[11px] uppercase tracking-widest text-accent mb-6">
+              {t.detail.changelog}
+            </span>
+            <div className="bg-card ring-1 ring-border rounded-[var(--radius)] p-6 md:p-8">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -354,7 +340,7 @@ function PluginDetail() {
                     <li className="text-sm text-foreground/90 leading-relaxed">{children}</li>
                   ),
                   pre: ({ children }) => (
-                    <pre className="bg-[var(--code-bg)] text-white/80 rounded-lg p-4 overflow-x-auto mb-3 font-mono text-xs">
+                    <pre className="bg-[var(--code-bg)] text-white/80 rounded-md p-4 overflow-x-auto mb-3 font-mono text-xs">
                       {children}
                     </pre>
                   ),
@@ -404,7 +390,7 @@ function PluginDetail() {
         )}
 
         <section className="border-t border-border pt-16">
-          <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6">
+          <h2 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground mb-6">
             {t.detail.others}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -413,11 +399,13 @@ function PluginDetail() {
                 key={p.slug}
                 to="/plugins/$slug"
                 params={{ slug: p.slug }}
-                className="group p-5 bg-card ring-1 ring-border rounded-xl hover:ring-accent/40 transition-all"
+                className="card-lift group p-5 bg-card ring-1 ring-border rounded-[var(--radius)] hover:ring-accent/40"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <p.icon className="size-4 text-accent" />
-                  <span className="font-bold text-sm">{p.name}</span>
+                  <span className="icon-badge size-8 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                    <p.icon className="size-4" />
+                  </span>
+                  <span className="font-display font-semibold text-sm">{p.name}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">{p.tagline[lang]}</p>
               </Link>
