@@ -204,6 +204,7 @@ export const plugins: Plugin[] = [
       "git clone https://github.com/gioxx/wp-posts-to-github",
       "# Activate 'Posts to GitHub' and configure your repository under Settings",
     ],
+    wporg: "https://wordpress.org/plugins/posts-to-github-md/",
   },
   {
     slug: "silent-consent-clarity",
