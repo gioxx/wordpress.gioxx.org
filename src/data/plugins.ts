@@ -122,7 +122,6 @@ export const plugins: Plugin[] = [
       "git clone https://github.com/gioxx/email-user-cleaner",
       "# Activate 'E-mail User Cleaner' — also available on the official WordPress.org directory",
     ],
-    featured: true,
   },
   {
     slug: "wp-lsi-reloaded",
