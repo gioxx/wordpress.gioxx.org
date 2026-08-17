@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: frozen-lockfile
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun run build
