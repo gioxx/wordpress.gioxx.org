@@ -106,7 +106,7 @@ const dicts: Record<Lang, Dict> = {
         "You can install this plugin manually over SSH — connect to your server and run these commands inside your wp-content/plugins directory:",
       sshAlt:
         "Alternatively, download the ZIP above and upload it from Plugins → Add New → Upload Plugin in your WordPress dashboard, or via FTP/SFTP.",
-      wporg: "WordPress.org listing",
+      wporg: "View on WordPress.org",
       comingSoon: "Coming soon",
       comingSoonNote:
         "This plugin is still in private development and isn't publicly available yet. Check back later for the GitHub repository and download.",
@@ -181,7 +181,7 @@ const dicts: Record<Lang, Dict> = {
         "Puoi installare questo plugin manualmente via SSH — connettiti al tuo server ed esegui questi comandi all'interno della directory wp-content/plugins:",
       sshAlt:
         "In alternativa, scarica lo ZIP qui sopra e caricalo da Plugin → Aggiungi nuovo → Carica plugin nella tua bacheca WordPress, oppure via FTP/SFTP.",
-      wporg: "Scheda su WordPress.org",
+      wporg: "Vedi su WordPress.org",
       comingSoon: "In arrivo",
       comingSoonNote:
         "Questo plugin è ancora in sviluppo privato e non è ancora disponibile pubblicamente. Torna più avanti per trovare il repository GitHub e il download.",
