@@ -8,6 +8,7 @@ export const siteConfig = {
   author: "Gioxx",
   githubUser: "gioxx",
   githubUserUrl: "https://github.com/gioxx",
+  siteRepoUrl: "https://github.com/gioxx/wordpress.gioxx.org",
   blogUrl: "https://gioxx.org/tag/wordpress/",
   contactUrl: "https://gioxx.org/about/#giovanni_contattami",
   reposSearchUrl: "https://github.com/gioxx?tab=repositories&q=WordPress-&type=&language=&sort=",

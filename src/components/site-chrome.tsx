@@ -128,6 +128,16 @@ export function SiteFooter() {
                   GitHub
                 </a>
               </li>
+              <li>
+                <a
+                  href={siteConfig.siteRepoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t.footer.sourceCode}
+                </a>
+              </li>
             </ul>
           </div>
           <div>
