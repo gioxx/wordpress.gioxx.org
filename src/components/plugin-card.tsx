@@ -28,17 +28,24 @@ export function PluginCard({
         <div className="icon-badge size-10 rounded-full flex items-center justify-center shrink-0 bg-accent/10 text-accent">
           <Icon className="size-5" />
         </div>
-        {comingSoon ? (
-          <span className="font-mono text-[9px] uppercase tracking-widest text-amber-600 dark:text-amber-400 border border-amber-500/30 bg-amber-500/5 px-2 py-0.5 rounded shrink-0">
-            {t.card.comingSoon}
-          </span>
-        ) : (
-          plugin.featured && (
-            <span className="font-mono text-[9px] uppercase tracking-widest text-accent border border-accent/30 bg-accent/5 px-2 py-0.5 rounded shrink-0">
-              {lang === "it" ? "In evidenza" : "Featured"}
+        <div className="flex flex-wrap justify-end gap-1.5">
+          {comingSoon ? (
+            <span className="font-mono text-[9px] uppercase tracking-widest text-amber-600 dark:text-amber-400 border border-amber-500/30 bg-amber-500/5 px-2 py-0.5 rounded shrink-0">
+              {t.card.comingSoon}
             </span>
-          )
-        )}
+          ) : (
+            plugin.featured && (
+              <span className="font-mono text-[9px] uppercase tracking-widest text-accent border border-accent/30 bg-accent/5 px-2 py-0.5 rounded shrink-0">
+                {lang === "it" ? "In evidenza" : "Featured"}
+              </span>
+            )
+          )}
+          {plugin.wporg && (
+            <span className="font-mono text-[9px] uppercase tracking-widest text-[#3858e9] dark:text-[#8fa3ff] border border-[#3858e9]/30 bg-[#3858e9]/5 px-2 py-0.5 rounded shrink-0">
+              WordPress.org
+            </span>
+          )}
+        </div>
       </div>
       <div className="flex justify-between items-start mb-2 gap-3">
         <h3 className="font-display font-semibold text-lg leading-tight">{plugin.name}</h3>
