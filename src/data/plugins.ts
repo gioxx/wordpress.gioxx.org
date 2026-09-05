@@ -293,25 +293,25 @@ export const plugins: Plugin[] = [
     ],
   },
   {
-    slug: "termcraft",
-    name: "Termcraft",
+    slug: "tag-loom",
+    name: "Tag Loom",
     tagline: {
       en: "Manage WordPress tags and taxonomy terms manually or with AI suggestions — always with manual approval.",
       it: "Gestisci i tag e i termini di tassonomia di WordPress manualmente o con suggerimenti IA — sempre con approvazione manuale.",
     },
     description: {
-      en: "Termcraft sends your post tags in batches to whichever AI provider the site owner has configured in WordPress core's AI Client, and asks it to spot near-duplicates, semantic overlaps, and low-usage tags that could be merged into a broader existing tag. Nothing is changed automatically: every suggestion is queued for review and only applied when you approve it. The plugin ships no AI integration of its own and stores no API key. Alongside the AI analysis, a 'Manage Tags' tab covers manual, non-AI tag housekeeping: usage statistics, search, merge, and delete.",
-      it: "Termcraft invia i tag dei tuoi articoli in batch al provider IA che il proprietario del sito ha configurato nell'AI Client di WordPress core, chiedendo di individuare quasi-duplicati, sovrapposizioni semantiche e tag poco usati che potrebbero essere uniti a un tag più generale già esistente. Nulla viene modificato automaticamente: ogni suggerimento viene messo in coda per la revisione e applicato solo dopo la tua approvazione. Il plugin non include alcuna integrazione IA propria e non memorizza nessuna API key. Oltre all'analisi IA, una scheda 'Manage Tags' copre la manutenzione manuale, non-IA, dei tag: statistiche d'uso, ricerca, unione ed eliminazione.",
+      en: "Tag Loom sends your post tags in batches to whichever AI provider the site owner has configured in WordPress core's AI Client, and asks it to spot near-duplicates, semantic overlaps, and low-usage tags that could be merged into a broader existing tag. Nothing is changed automatically: every suggestion is queued for review and only applied when you approve it. The plugin ships no AI integration of its own and stores no API key. Alongside the AI analysis, a 'Manage Tags' tab covers manual, non-AI tag housekeeping: usage statistics, search, merge, and delete.",
+      it: "Tag Loom invia i tag dei tuoi articoli in batch al provider IA che il proprietario del sito ha configurato nell'AI Client di WordPress core, chiedendo di individuare quasi-duplicati, sovrapposizioni semantiche e tag poco usati che potrebbero essere uniti a un tag più generale già esistente. Nulla viene modificato automaticamente: ogni suggerimento viene messo in coda per la revisione e applicato solo dopo la tua approvazione. Il plugin non include alcuna integrazione IA propria e non memorizza nessuna API key. Oltre all'analisi IA, una scheda 'Manage Tags' copre la manutenzione manuale, non-IA, dei tag: statistiche d'uso, ricerca, unione ed eliminazione.",
     },
     icon: Tags,
     tags: ["AI", "Tags", "Taxonomy"],
     stars: "—",
-    version: "0.24.0",
+    version: "0.24.1",
     status: "stable",
     wpMin: "7.0+",
     phpCompat: "7.4+",
-    github: repo("wp-termcraft"),
-    download: dl("wp-termcraft"),
+    github: repo("wp-tag-loom"),
+    download: dl("wp-tag-loom"),
     features: {
       en: [
         "Batch analysis of all tags through WordPress core's AI Client, with a live processing log, progress tracking, and a stop button.",
@@ -338,8 +338,8 @@ export const plugins: Plugin[] = [
     },
     install: [
       "cd wp-content/plugins",
-      "git clone https://github.com/gioxx/wp-termcraft",
-      "# Activate 'Termcraft', then configure an AI provider in the WordPress settings (only needed for the 'AI Analysis' tab)",
+      "git clone https://github.com/gioxx/wp-tag-loom",
+      "# Activate 'Tag Loom', then configure an AI provider in the WordPress settings (only needed for the 'AI Analysis' tab)",
     ],
   },
 ];
