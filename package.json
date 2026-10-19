@@ -20,7 +20,7 @@
     "@tanstack/router-plugin": "^1.168.42",
     "lucide-react": "^1.54.0",
     "react": "^19.3.0",
-    "react-dom": "^19.2.8",
+    "react-dom": "^19.3.1",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "tailwindcss": "^4.3.3",
