@@ -9,22 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as DonateRouteImport } from './routes/donate'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PluginsWpLsiRouteImport } from './routes/plugins.wp-lsi'
-import { Route as PluginsClarityConsentAutoRouteImport } from './routes/plugins.clarity-consent-auto'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DonateRouteImport } from './routes/donate'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PluginsIndexRouteImport } from './routes/plugins.index'
 import { Route as PluginsSlugRouteImport } from './routes/plugins.$slug'
+import { Route as PluginsClarityConsentAutoRouteImport } from './routes/plugins.clarity-consent-auto'
+import { Route as PluginsWpLsiRouteImport } from './routes/plugins.wp-lsi'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DonateRoute = DonateRouteImport.update({
-  id: '/donate',
-  path: '/donate',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -32,14 +28,24 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PluginsWpLsiRoute = PluginsWpLsiRouteImport.update({
-  id: '/plugins/wp-lsi',
-  path: '/plugins/wp-lsi',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PluginsIndexRoute = PluginsIndexRouteImport.update({
+  id: '/plugins/',
+  path: '/plugins/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PluginsSlugRoute = PluginsSlugRouteImport.update({
+  id: '/plugins/$slug',
+  path: '/plugins/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PluginsClarityConsentAutoRoute =
@@ -48,9 +54,9 @@ const PluginsClarityConsentAutoRoute =
     path: '/plugins/clarity-consent-auto',
     getParentRoute: () => rootRouteImport,
   } as any)
-const PluginsSlugRoute = PluginsSlugRouteImport.update({
-  id: '/plugins/$slug',
-  path: '/plugins/$slug',
+const PluginsWpLsiRoute = PluginsWpLsiRouteImport.update({
+  id: '/plugins/wp-lsi',
+  path: '/plugins/wp-lsi',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -62,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
+  '/plugins/': typeof PluginsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByTo {
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
+  '/plugins': typeof PluginsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -81,6 +89,7 @@ export interface FileRoutesById {
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
+  '/plugins/': typeof PluginsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -92,6 +101,7 @@ export interface FileRouteTypes {
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
     | '/plugins/wp-lsi'
+    | '/plugins/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -101,6 +111,7 @@ export interface FileRouteTypes {
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
     | '/plugins/wp-lsi'
+    | '/plugins'
   id:
     | '__root__'
     | '/'
@@ -110,6 +121,7 @@ export interface FileRouteTypes {
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
     | '/plugins/wp-lsi'
+    | '/plugins/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -120,22 +132,16 @@ export interface RootRouteChildren {
   PluginsSlugRoute: typeof PluginsSlugRoute
   PluginsClarityConsentAutoRoute: typeof PluginsClarityConsentAutoRoute
   PluginsWpLsiRoute: typeof PluginsWpLsiRoute
+  PluginsIndexRoute: typeof PluginsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/donate': {
-      id: '/donate'
-      path: '/donate'
-      fullPath: '/donate'
-      preLoaderRoute: typeof DonateRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -145,18 +151,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/plugins/wp-lsi': {
-      id: '/plugins/wp-lsi'
-      path: '/plugins/wp-lsi'
-      fullPath: '/plugins/wp-lsi'
-      preLoaderRoute: typeof PluginsWpLsiRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plugins/': {
+      id: '/plugins/'
+      path: '/plugins'
+      fullPath: '/plugins/'
+      preLoaderRoute: typeof PluginsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plugins/$slug': {
+      id: '/plugins/$slug'
+      path: '/plugins/$slug'
+      fullPath: '/plugins/$slug'
+      preLoaderRoute: typeof PluginsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/plugins/clarity-consent-auto': {
@@ -166,11 +186,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PluginsClarityConsentAutoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/plugins/$slug': {
-      id: '/plugins/$slug'
-      path: '/plugins/$slug'
-      fullPath: '/plugins/$slug'
-      preLoaderRoute: typeof PluginsSlugRouteImport
+    '/plugins/wp-lsi': {
+      id: '/plugins/wp-lsi'
+      path: '/plugins/wp-lsi'
+      fullPath: '/plugins/wp-lsi'
+      preLoaderRoute: typeof PluginsWpLsiRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -184,6 +204,7 @@ const rootRouteChildren: RootRouteChildren = {
   PluginsSlugRoute: PluginsSlugRoute,
   PluginsClarityConsentAutoRoute: PluginsClarityConsentAutoRoute,
   PluginsWpLsiRoute: PluginsWpLsiRoute,
+  PluginsIndexRoute: PluginsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
