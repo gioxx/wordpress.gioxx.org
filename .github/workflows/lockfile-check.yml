@@ -2,9 +2,6 @@ name: Lockfile check
 
 on:
   pull_request:
-    paths:
-      - "package.json"
-      - "bun.lock"
   push:
     branches:
       - main
