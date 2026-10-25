@@ -32,19 +32,32 @@ jobs:
         run: |
           npx wrangler dev --config dist/server/wrangler.json --port 8787 --ip 127.0.0.1 &
           WRANGLER_PID=$!
+          trap 'kill $WRANGLER_PID 2>/dev/null || true' EXIT
+          BASE=http://127.0.0.1:8787
+
           for i in $(seq 1 20); do
-            CODE=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/ 2>/dev/null || true)
-            if [ "$CODE" = "200" ]; then
-              echo "Worker responded 200"
-              kill $WRANGLER_PID
-              exit 0
-            elif [ "$CODE" != "000" ]; then
-              echo "Worker responded $CODE"
-              kill $WRANGLER_PID 2>/dev/null || true
-              exit 1
-            fi
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" $BASE/ 2>/dev/null || true)
+            [ "$CODE" != "000" ] && break
             sleep 2
           done
-          echo "Worker never came up (timed out)"
-          kill $WRANGLER_PID 2>/dev/null || true
-          exit 1
+          if [ "$CODE" = "000" ]; then
+            echo "Worker never came up (timed out)"
+            exit 1
+          fi
+
+          check() {
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE$1")
+            echo "$1 -> $CODE"
+            [ "$CODE" = "200" ]
+          }
+
+          check / || exit 1
+
+          # Plugin detail pages call server functions (GitHub stats) during SSR,
+          # so they catch breakage the home page alone does not.
+          PLUGIN_PATH=$(curl -s $BASE/ | grep -oE 'href="/plugins/[^"#]+"' | head -1 | cut -d'"' -f2)
+          if [ -z "$PLUGIN_PATH" ]; then
+            echo "No plugin link found on the home page"
+            exit 1
+          fi
+          check "$PLUGIN_PATH" || exit 1
