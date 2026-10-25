@@ -29,7 +29,9 @@ export const Route = createFileRoute("/")({
   }),
   errorComponent: ({ error }) => (
     <div className="min-h-screen grid place-items-center p-6 text-center">
-      <p className="text-sm text-muted-foreground">{error.message}</p>
+      <p className="text-sm text-muted-foreground">
+        {error instanceof Error ? error.message : String(error)}
+      </p>
     </div>
   ),
   component: Index,

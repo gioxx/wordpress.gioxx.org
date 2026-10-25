@@ -163,7 +163,7 @@ async function getCachedStats(slug: string, github: string, token?: string): Pro
 }
 
 export const getRepoStats = createServerFn({ method: "GET" })
-  .inputValidator((data: { slug: string }) => data)
+  .validator((data: { slug: string }) => data)
   .handler(async ({ data }): Promise<RepoStats | null> => {
     const plugin = plugins.find((p) => p.slug === data.slug);
     if (!plugin) return null;
