@@ -35,7 +35,9 @@ export const Route = createFileRoute("/plugins/$slug")({
     };
   },
   notFoundComponent: () => <NotFoundView />,
-  errorComponent: ({ error }) => <ErrorView message={error.message} />,
+  errorComponent: ({ error }) => (
+    <ErrorView message={error instanceof Error ? error.message : String(error)} />
+  ),
   component: PluginDetail,
 });
 
