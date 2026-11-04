@@ -12,27 +12,12 @@ updates:
       - dependency-name: "@lovable.dev/vite-tanstack-config"
         update-types: ["version-update:semver-major"]
     groups:
-      radix-ui:
+      all-dependencies:
         patterns:
-          - "@radix-ui/*"
-      tanstack:
-        patterns:
-          - "@tanstack/*"
-      tailwind:
-        patterns:
-          - "tailwindcss"
-          - "@tailwindcss/*"
-          - "tw-animate-css"
-      types:
-        patterns:
-          - "@types/*"
-      linting:
-        patterns:
-          - "eslint*"
-          - "@eslint/*"
-          - "typescript-eslint"
-          - "prettier*"
-          - "eslint-*"
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: "github-actions"
     directory: "/"
