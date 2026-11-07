@@ -306,12 +306,13 @@ export const plugins: Plugin[] = [
     icon: Tags,
     tags: ["AI", "Tags", "Taxonomy"],
     stars: "—",
-    version: "0.24.1",
+    version: "0.24.2",
     status: "stable",
     wpMin: "7.0+",
     phpCompat: "7.4+",
     github: repo("wp-tag-loom"),
     download: dl("wp-tag-loom"),
+    wporg: "https://wordpress.org/plugins/tag-loom/",
     features: {
       en: [
         "Batch analysis of all tags through WordPress core's AI Client, with a live processing log, progress tracking, and a stop button.",
@@ -339,7 +340,8 @@ export const plugins: Plugin[] = [
     install: [
       "cd wp-content/plugins",
       "git clone https://github.com/gioxx/wp-tag-loom",
-      "# Activate 'Tag Loom', then configure an AI provider in the WordPress settings (only needed for the 'AI Analysis' tab)",
+      "# Activate 'Tag Loom' — also available on the official WordPress.org directory",
+      "# Configure an AI provider in the WordPress settings (only needed for the 'AI Analysis' tab)",
     ],
   },
 ];
