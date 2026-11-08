@@ -6,7 +6,7 @@ import { plugins } from "@/data/plugins";
 import { getAllRepoStats } from "@/lib/github.functions";
 import { useI18n } from "@/lib/i18n";
 import { siteConfig } from "@/config/site";
-import { WORDPRESS_MARK_PATH } from "@/components/wordpress-mark";
+import { BRAND_MARK_OUTLINE_VIEWBOX, BRAND_MARK_PATH } from "@/components/brand-mark";
 
 export const Route = createFileRoute("/")({
   loader: () => getAllRepoStats(),
@@ -65,12 +65,12 @@ function Index() {
             </p>
           </div>
           <svg
-            viewBox="0 0 1920 1920"
+            viewBox={BRAND_MARK_OUTLINE_VIEWBOX}
             fill="none"
             className="hidden md:block absolute right-12 lg:right-20 top-1/2 -translate-y-1/2 w-48 lg:w-60 h-auto text-accent opacity-40 dark:opacity-25 pointer-events-none z-0"
             aria-hidden="true"
           >
-            <path fillRule="evenodd" fill="currentColor" d={WORDPRESS_MARK_PATH} />
+            <path fill="none" stroke="currentColor" strokeWidth={5} strokeLinejoin="round" d={BRAND_MARK_PATH} />
           </svg>
         </section>
 
