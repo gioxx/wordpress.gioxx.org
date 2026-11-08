@@ -122,6 +122,29 @@
   }
 }
 
+/* Hero mark: a snake of light runs along the outline in a loop. Every layer
+   (pathLength 100) ends at the same head; overlapping low-opacity layers make
+   the head bright and the tail fade out. */
+.hero-snake {
+  opacity: 0.11;
+  animation: heroSnake 7s linear infinite;
+}
+
+@keyframes heroSnake {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-snake {
+    display: none;
+  }
+}
+
 /* Typographic code/terminal frame — no re-drawn window chrome, no traffic-light dots */
 .code-frame {
   background: var(--code-bg);
