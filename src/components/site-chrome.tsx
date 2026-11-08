@@ -4,7 +4,7 @@ import { ThemeToggle } from "@/lib/theme";
 import { LanguageToggle, useI18n } from "@/lib/i18n";
 import { plugins } from "@/data/plugins";
 import { siteConfig } from "@/config/site";
-import { WordPressMark } from "@/components/wordpress-mark";
+import { BrandMark } from "@/components/brand-mark";
 
 export function SiteNav() {
   const { t } = useI18n();
@@ -16,7 +16,7 @@ export function SiteNav() {
             to="/"
             className="flex items-center gap-2 font-display font-semibold tracking-tight text-[15px] shrink-0"
           >
-            <WordPressMark className="size-5 text-accent shrink-0" />
+            <BrandMark className="size-5 text-accent shrink-0" />
             {siteConfig.name}
           </Link>
           <div className="hidden md:block w-px h-5 bg-border shrink-0" aria-hidden="true" />
