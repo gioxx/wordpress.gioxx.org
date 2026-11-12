@@ -6,7 +6,7 @@
   "main": "src/server.ts",
   "routes": [
     {
-      "pattern": "wordpress.gioxx.org",
+      "pattern": "wordpress.gxware.org",
       "custom_domain": true,
     },
   ],
