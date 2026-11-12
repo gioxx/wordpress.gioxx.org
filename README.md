@@ -1,6 +1,6 @@
 # WordPress: my plugins and side projects
 
-Source code of [wordpress.gioxx.org](https://wordpress.gioxx.org) — a personal gallery of open-source plugins built for [WordPress](https://wordpress.org).
+Source code of [wordpress.gxware.org](https://wordpress.gxware.org) — a personal gallery of open-source plugins built for [WordPress](https://wordpress.org).
 
 ## What this is
 
