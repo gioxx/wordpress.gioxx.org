@@ -125,7 +125,7 @@ export const plugins: Plugin[] = [
     ],
   },
   {
-    slug: "gistful",
+    slug: "gistful-for-github",
     name: "Gistful for GitHub",
     tagline: {
       en: "Embed GitHub Gists with a block, the [gist] shortcode or a pasted URL — cached, sanitized, with dark mode.",
