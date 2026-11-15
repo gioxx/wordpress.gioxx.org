@@ -5,6 +5,7 @@ import { GithubIcon } from "@/components/github-icon";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { SiteNav, SiteFooter } from "@/components/site-chrome";
+import { DistributionBadge } from "@/components/distribution-badge";
 import { getPlugin, plugins } from "@/data/plugins";
 import { getRepoStats } from "@/lib/github.functions";
 import { useI18n } from "@/lib/i18n";
@@ -150,6 +151,7 @@ function PluginDetail() {
               >
                 {comingSoon ? t.detail.comingSoon : `${plugin.status} · v${version}`}
               </span>
+              <DistributionBadge plugin={plugin} className="text-[10px]" />
               {!comingSoon && (
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded uppercase text-muted-foreground border border-border">
                   ★ {stars}

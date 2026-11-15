@@ -19,6 +19,16 @@ type Dict = {
     statCategories: string;
   };
   card: { explore: string; comingSoon: string };
+  distribution: {
+    wporg: string;
+    github: string;
+    wporgTitle: string;
+    githubTitle: string;
+    filterLabel: string;
+    filterAll: string;
+    filterWporg: string;
+    filterGithub: string;
+  };
   detail: {
     back: string;
     overview: string;
@@ -91,6 +101,16 @@ const dicts: Record<Lang, Dict> = {
       statCategories: "categories",
     },
     card: { explore: "Explore details", comingSoon: "Coming soon" },
+    distribution: {
+      wporg: "WordPress.org",
+      github: "GitHub only",
+      wporgTitle: "Also listed in the official WordPress.org plugin directory",
+      githubTitle: "Available on GitHub only, not in the WordPress.org directory",
+      filterLabel: "Filter plugins by source",
+      filterAll: "All",
+      filterWporg: "On WordPress.org",
+      filterGithub: "GitHub only",
+    },
     detail: {
       back: "All plugins",
       overview: "Overview",
@@ -167,6 +187,16 @@ const dicts: Record<Lang, Dict> = {
       statCategories: "categorie",
     },
     card: { explore: "Esplora dettagli", comingSoon: "In arrivo" },
+    distribution: {
+      wporg: "WordPress.org",
+      github: "Solo GitHub",
+      wporgTitle: "Disponibile anche nella directory ufficiale dei plugin di WordPress.org",
+      githubTitle: "Disponibile solo su GitHub, non nella directory di WordPress.org",
+      filterLabel: "Filtra i plugin per provenienza",
+      filterAll: "Tutti",
+      filterWporg: "Su WordPress.org",
+      filterGithub: "Solo GitHub",
+    },
     detail: {
       back: "Tutti i plugin",
       overview: "Panoramica",
