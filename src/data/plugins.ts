@@ -176,7 +176,7 @@ export const plugins: Plugin[] = [
     ],
   },
   {
-    slug: "wp-posts-to-github",
+    slug: "posts-to-github-md",
     name: "Posts to GitHub",
     tagline: {
       en: "Exports published posts as Markdown files, with YAML front matter, to a GitHub repository.",
@@ -215,7 +215,7 @@ export const plugins: Plugin[] = [
     wporg: "https://wordpress.org/plugins/posts-to-github-md/",
   },
   {
-    slug: "wp-lsi-reloaded",
+    slug: "reloaded-social-icons",
     name: "Reloaded Social Icons",
     tagline: {
       en: "Lightweight social icon widget, an independent and modernized fork of Lightweight Social Icons, with Bluesky, Threads, Mastodon and more.",
@@ -306,7 +306,7 @@ export const plugins: Plugin[] = [
     ],
   },
   {
-    slug: "wp-simplealexa",
+    slug: "simple-alexa-news-briefing",
     name: "Simple Alexa News Briefing",
     tagline: {
       en: "Turn your latest posts into an Alexa Flash Briefing feed via a REST endpoint.",
