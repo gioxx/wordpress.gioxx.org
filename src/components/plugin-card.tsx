@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { Plugin } from "@/data/plugins";
 import type { RepoStats } from "@/lib/github.functions";
 import { useI18n } from "@/lib/i18n";
+import { DistributionBadge } from "@/components/distribution-badge";
 
 export function PluginCard({
   plugin,
@@ -40,11 +41,7 @@ export function PluginCard({
               </span>
             )
           )}
-          {plugin.wporg && (
-            <span className="font-mono text-[9px] uppercase tracking-widest text-[#3858e9] dark:text-[#8fa3ff] border border-[#3858e9]/30 bg-[#3858e9]/5 px-2 py-0.5 rounded shrink-0">
-              WordPress.org
-            </span>
-          )}
+          <DistributionBadge plugin={plugin} className="text-[9px] tracking-widest" />
         </div>
       </div>
       <div className="flex justify-between items-start mb-2 gap-3">

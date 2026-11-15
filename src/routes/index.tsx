@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { SiteNav, SiteFooter } from "@/components/site-chrome";
 import { PluginCard } from "@/components/plugin-card";
+import { distributionOf, type Distribution } from "@/components/distribution-badge";
 import { plugins } from "@/data/plugins";
 import { getAllRepoStats } from "@/lib/github.functions";
 import { useI18n } from "@/lib/i18n";
@@ -13,6 +14,10 @@ const HERO_SNAKE_LENGTH = 30;
 const HERO_SNAKE_LAYERS = Array.from({ length: 20 }, (_, i) => ((i + 1) * HERO_SNAKE_LENGTH) / 20);
 
 export const Route = createFileRoute("/")({
+  // ?source=wporg|github filters the grid, so a filtered view can be linked.
+  validateSearch: (search: Record<string, unknown>): { source?: Distribution } => ({
+    source: search.source === "wporg" || search.source === "github" ? search.source : undefined,
+  }),
   loader: () => getAllRepoStats(),
   head: () => ({
     meta: [
@@ -43,9 +48,25 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const statsMap = Route.useLoaderData();
+  const { source } = Route.useSearch();
+  const navigate = Route.useNavigate();
   const { t } = useI18n();
 
   const categoryCount = useMemo(() => new Set(plugins.flatMap((p) => p.tags)).size, []);
+
+  const counts = useMemo(
+    () => ({
+      wporg: plugins.filter((p) => distributionOf(p) === "wporg").length,
+      github: plugins.filter((p) => distributionOf(p) === "github").length,
+    }),
+    [],
+  );
+  const visiblePlugins = source ? plugins.filter((p) => distributionOf(p) === source) : plugins;
+  const filters: { value: Distribution | undefined; label: string; count: number }[] = [
+    { value: undefined, label: t.distribution.filterAll, count: plugins.length },
+    { value: "wporg", label: t.distribution.filterWporg, count: counts.wporg },
+    { value: "github", label: t.distribution.filterGithub, count: counts.github },
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-accent/10 selection:text-accent">
@@ -116,8 +137,36 @@ function Index() {
               {t.home.allRepos}
             </a>
           </div>
+          <div
+            role="group"
+            aria-label={t.distribution.filterLabel}
+            className="flex flex-wrap gap-2 mb-6"
+          >
+            {filters.map((f) => {
+              const active = source === f.value;
+              return (
+                <button
+                  key={f.value ?? "all"}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() =>
+                    navigate({ search: { source: f.value }, replace: true, resetScroll: false })
+                  }
+                  className={`font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 rounded-[var(--radius)] ring-1 transition-colors ${
+                    active
+                      ? f.value === "wporg"
+                        ? "ring-[#3858e9]/50 bg-[#3858e9]/10 text-[#3858e9] dark:text-[#8fa3ff]"
+                        : "ring-accent/50 bg-accent/10 text-accent"
+                      : "ring-border text-muted-foreground hover:ring-accent/40 hover:text-accent"
+                  }`}
+                >
+                  {f.label} <span className="opacity-60">· {f.count}</span>
+                </button>
+              );
+            })}
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {plugins.map((p, i) => (
+            {visiblePlugins.map((p, i) => (
               <PluginCard key={p.slug} plugin={p} index={i} stats={statsMap[p.slug]} />
             ))}
           </div>
