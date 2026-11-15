@@ -17,6 +17,9 @@ import { Route as PluginsIndexRouteImport } from './routes/plugins.index'
 import { Route as PluginsSlugRouteImport } from './routes/plugins.$slug'
 import { Route as PluginsClarityConsentAutoRouteImport } from './routes/plugins.clarity-consent-auto'
 import { Route as PluginsWpLsiRouteImport } from './routes/plugins.wp-lsi'
+import { Route as PluginsWpLsiReloadedRouteImport } from './routes/plugins.wp-lsi-reloaded'
+import { Route as PluginsWpPostsToGithubRouteImport } from './routes/plugins.wp-posts-to-github'
+import { Route as PluginsWpSimplealexaRouteImport } from './routes/plugins.wp-simplealexa'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -59,6 +62,21 @@ const PluginsWpLsiRoute = PluginsWpLsiRouteImport.update({
   path: '/plugins/wp-lsi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PluginsWpLsiReloadedRoute = PluginsWpLsiReloadedRouteImport.update({
+  id: '/plugins/wp-lsi-reloaded',
+  path: '/plugins/wp-lsi-reloaded',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PluginsWpPostsToGithubRoute = PluginsWpPostsToGithubRouteImport.update({
+  id: '/plugins/wp-posts-to-github',
+  path: '/plugins/wp-posts-to-github',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PluginsWpSimplealexaRoute = PluginsWpSimplealexaRouteImport.update({
+  id: '/plugins/wp-simplealexa',
+  path: '/plugins/wp-simplealexa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +86,9 @@ export interface FileRoutesByFullPath {
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
+  '/plugins/wp-lsi-reloaded': typeof PluginsWpLsiReloadedRoute
+  '/plugins/wp-posts-to-github': typeof PluginsWpPostsToGithubRoute
+  '/plugins/wp-simplealexa': typeof PluginsWpSimplealexaRoute
   '/plugins/': typeof PluginsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -78,6 +99,9 @@ export interface FileRoutesByTo {
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
+  '/plugins/wp-lsi-reloaded': typeof PluginsWpLsiReloadedRoute
+  '/plugins/wp-posts-to-github': typeof PluginsWpPostsToGithubRoute
+  '/plugins/wp-simplealexa': typeof PluginsWpSimplealexaRoute
   '/plugins': typeof PluginsIndexRoute
 }
 export interface FileRoutesById {
@@ -89,6 +113,9 @@ export interface FileRoutesById {
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
+  '/plugins/wp-lsi-reloaded': typeof PluginsWpLsiReloadedRoute
+  '/plugins/wp-posts-to-github': typeof PluginsWpPostsToGithubRoute
+  '/plugins/wp-simplealexa': typeof PluginsWpSimplealexaRoute
   '/plugins/': typeof PluginsIndexRoute
 }
 export interface FileRouteTypes {
@@ -101,6 +128,9 @@ export interface FileRouteTypes {
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
     | '/plugins/wp-lsi'
+    | '/plugins/wp-lsi-reloaded'
+    | '/plugins/wp-posts-to-github'
+    | '/plugins/wp-simplealexa'
     | '/plugins/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -111,6 +141,9 @@ export interface FileRouteTypes {
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
     | '/plugins/wp-lsi'
+    | '/plugins/wp-lsi-reloaded'
+    | '/plugins/wp-posts-to-github'
+    | '/plugins/wp-simplealexa'
     | '/plugins'
   id:
     | '__root__'
@@ -121,6 +154,9 @@ export interface FileRouteTypes {
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
     | '/plugins/wp-lsi'
+    | '/plugins/wp-lsi-reloaded'
+    | '/plugins/wp-posts-to-github'
+    | '/plugins/wp-simplealexa'
     | '/plugins/'
   fileRoutesById: FileRoutesById
 }
@@ -132,6 +168,9 @@ export interface RootRouteChildren {
   PluginsSlugRoute: typeof PluginsSlugRoute
   PluginsClarityConsentAutoRoute: typeof PluginsClarityConsentAutoRoute
   PluginsWpLsiRoute: typeof PluginsWpLsiRoute
+  PluginsWpLsiReloadedRoute: typeof PluginsWpLsiReloadedRoute
+  PluginsWpPostsToGithubRoute: typeof PluginsWpPostsToGithubRoute
+  PluginsWpSimplealexaRoute: typeof PluginsWpSimplealexaRoute
   PluginsIndexRoute: typeof PluginsIndexRoute
 }
 
@@ -193,6 +232,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PluginsWpLsiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/plugins/wp-lsi-reloaded': {
+      id: '/plugins/wp-lsi-reloaded'
+      path: '/plugins/wp-lsi-reloaded'
+      fullPath: '/plugins/wp-lsi-reloaded'
+      preLoaderRoute: typeof PluginsWpLsiReloadedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plugins/wp-posts-to-github': {
+      id: '/plugins/wp-posts-to-github'
+      path: '/plugins/wp-posts-to-github'
+      fullPath: '/plugins/wp-posts-to-github'
+      preLoaderRoute: typeof PluginsWpPostsToGithubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plugins/wp-simplealexa': {
+      id: '/plugins/wp-simplealexa'
+      path: '/plugins/wp-simplealexa'
+      fullPath: '/plugins/wp-simplealexa'
+      preLoaderRoute: typeof PluginsWpSimplealexaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +264,9 @@ const rootRouteChildren: RootRouteChildren = {
   PluginsSlugRoute: PluginsSlugRoute,
   PluginsClarityConsentAutoRoute: PluginsClarityConsentAutoRoute,
   PluginsWpLsiRoute: PluginsWpLsiRoute,
+  PluginsWpLsiReloadedRoute: PluginsWpLsiReloadedRoute,
+  PluginsWpPostsToGithubRoute: PluginsWpPostsToGithubRoute,
+  PluginsWpSimplealexaRoute: PluginsWpSimplealexaRoute,
   PluginsIndexRoute: PluginsIndexRoute,
 }
 export const routeTree = rootRouteImport
