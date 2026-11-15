@@ -16,6 +16,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PluginsIndexRouteImport } from './routes/plugins.index'
 import { Route as PluginsSlugRouteImport } from './routes/plugins.$slug'
 import { Route as PluginsClarityConsentAutoRouteImport } from './routes/plugins.clarity-consent-auto'
+import { Route as PluginsGistfulRouteImport } from './routes/plugins.gistful'
 import { Route as PluginsWpLsiRouteImport } from './routes/plugins.wp-lsi'
 import { Route as PluginsWpLsiReloadedRouteImport } from './routes/plugins.wp-lsi-reloaded'
 import { Route as PluginsWpPostsToGithubRouteImport } from './routes/plugins.wp-posts-to-github'
@@ -57,6 +58,11 @@ const PluginsClarityConsentAutoRoute =
     path: '/plugins/clarity-consent-auto',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PluginsGistfulRoute = PluginsGistfulRouteImport.update({
+  id: '/plugins/gistful',
+  path: '/plugins/gistful',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PluginsWpLsiRoute = PluginsWpLsiRouteImport.update({
   id: '/plugins/wp-lsi',
   path: '/plugins/wp-lsi',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
+  '/plugins/gistful': typeof PluginsGistfulRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
   '/plugins/wp-lsi-reloaded': typeof PluginsWpLsiReloadedRoute
   '/plugins/wp-posts-to-github': typeof PluginsWpPostsToGithubRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
+  '/plugins/gistful': typeof PluginsGistfulRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
   '/plugins/wp-lsi-reloaded': typeof PluginsWpLsiReloadedRoute
   '/plugins/wp-posts-to-github': typeof PluginsWpPostsToGithubRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/plugins/$slug': typeof PluginsSlugRoute
   '/plugins/clarity-consent-auto': typeof PluginsClarityConsentAutoRoute
+  '/plugins/gistful': typeof PluginsGistfulRoute
   '/plugins/wp-lsi': typeof PluginsWpLsiRoute
   '/plugins/wp-lsi-reloaded': typeof PluginsWpLsiReloadedRoute
   '/plugins/wp-posts-to-github': typeof PluginsWpPostsToGithubRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
+    | '/plugins/gistful'
     | '/plugins/wp-lsi'
     | '/plugins/wp-lsi-reloaded'
     | '/plugins/wp-posts-to-github'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
+    | '/plugins/gistful'
     | '/plugins/wp-lsi'
     | '/plugins/wp-lsi-reloaded'
     | '/plugins/wp-posts-to-github'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/plugins/$slug'
     | '/plugins/clarity-consent-auto'
+    | '/plugins/gistful'
     | '/plugins/wp-lsi'
     | '/plugins/wp-lsi-reloaded'
     | '/plugins/wp-posts-to-github'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PluginsSlugRoute: typeof PluginsSlugRoute
   PluginsClarityConsentAutoRoute: typeof PluginsClarityConsentAutoRoute
+  PluginsGistfulRoute: typeof PluginsGistfulRoute
   PluginsWpLsiRoute: typeof PluginsWpLsiRoute
   PluginsWpLsiReloadedRoute: typeof PluginsWpLsiReloadedRoute
   PluginsWpPostsToGithubRoute: typeof PluginsWpPostsToGithubRoute
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PluginsClarityConsentAutoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/plugins/gistful': {
+      id: '/plugins/gistful'
+      path: '/plugins/gistful'
+      fullPath: '/plugins/gistful'
+      preLoaderRoute: typeof PluginsGistfulRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/plugins/wp-lsi': {
       id: '/plugins/wp-lsi'
       path: '/plugins/wp-lsi'
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   PluginsSlugRoute: PluginsSlugRoute,
   PluginsClarityConsentAutoRoute: PluginsClarityConsentAutoRoute,
+  PluginsGistfulRoute: PluginsGistfulRoute,
   PluginsWpLsiRoute: PluginsWpLsiRoute,
   PluginsWpLsiReloadedRoute: PluginsWpLsiReloadedRoute,
   PluginsWpPostsToGithubRoute: PluginsWpPostsToGithubRoute,
